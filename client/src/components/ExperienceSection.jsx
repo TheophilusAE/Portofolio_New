@@ -62,7 +62,8 @@ const ExperienceSection = () => {
       achievements: [
         "Orchestrated 15+ professional development workshops, reaching 300+ Computer Science students",
         "Elevated student engagement by 40%, establishing HIMTI as the most active student organization",
-        "Secured strategic partnerships with 5+ leading tech companies, creating 25+ internship opportunities"
+        "Increased membership by 200% through targeted recruitment and retention strategies",
+        "Secured strategic partnerships with leading tech companies, creating internship opportunities"
       ],
       skills: ["Leadership", "Event Management", "Public Speaking", "Team Building", "Strategic Planning"],
       icon: <FaUsers className="text-green-400" size={24} />
@@ -76,7 +77,7 @@ const ExperienceSection = () => {
       achievements: [
         "Guided 30+ freshmen to academic success with 100% first-semester completion rate",
         "Enhanced freshmen retention rate by 25% through comprehensive support initiatives",
-        "Designed and executed 8+ orientation programs that increased student satisfaction by 45%"
+        "Designed and executed orientation programs that increased student satisfaction by 100%"
       ],
       skills: ["Mentoring", "Orientation Planning", "Peer Support", "Communication", "Event Coordination"],
       icon: <FaBriefcase className="text-yellow-400" size={24} />
