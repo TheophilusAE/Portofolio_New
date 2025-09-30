@@ -10,6 +10,13 @@ const HeroSection = () => {
     { icon: <FaInstagram size={20} />, url: "https://www.instagram.com/thoouuuuuu?igsh=ajlnNml4M3c0MjAx" }
   ];
 
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
       {/* Background animated shapes */}
@@ -112,6 +119,7 @@ const HeroSection = () => {
                 Download CV
               </motion.button>
               <motion.button
+                onClick={scrollToContact}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-full border border-gray-600 text-white hover:bg-gray-800 transition-colors"
