@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 600px; 
+            margin: 50px auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; text-align: center; }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover { opacity: 0.9; }
+        button:disabled { 
+            background: #ccc; 
+            cursor: not-allowed; 
+        }
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success { 
+            background: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb; 
+        }
+        .error { 
+            background: #f8d7da; 
+            color: #721c24; 
+            border: 1px solid #f5c6cb; 
+        }
+        .credentials {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .credentials h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📧 EmailJS Test for Portfolio</h1>
+        
+        <div class="credentials">
+            <h3>✅ Setup Complete</h3>
+            <p>Your EmailJS credentials are configured:</p>
+            <p><strong>Service ID:</strong> <code id="serviceId">service_to4y3ml</code></p>
+            <p><strong>Template ID:</strong> <code id="templateId">template_hv910hn</code></p>
+            <p><strong>Public Key:</strong> <code id="publicKey">1e9Ub2mX4K1GniBlK</code></p>
+        </div>
+
+        <form id="emailForm">
+            <div class="form-group">
+                <label>Service ID:</label>
+                <input type="text" id="inputServiceId" value="service_to4y3ml" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Template ID:</label>
+                <input type="text" id="inputTemplateId" value="template_hv910hn" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Public Key:</label>
+                <input type="text" id="inputPublicKey" value="1e9Ub2mX4K1GniBlK" required>
+            </div>
+
+            <hr style="margin: 30px 0;">
+
+            <div class="form-group">
+                <label>Full Name:</label>
+                <input type="text" id="fullName" value="Test User" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" id="email" value="test@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Company:</label>
+                <input type="text" id="company" value="Test Company Inc.">
+            </div>
+
+            <div class="form-group">
+                <label>Position:</label>
+                <input type="text" id="position" value="Software Developer">
+            </div>
+
+            <div class="form-group">
+                <label>Inquiry Type:</label>
+                <select id="inquiryType" required>
+                    <option value="">Select type</option>
+                    <option value="Internship Opportunity">Internship Opportunity</option>
+                    <option value="Full-time Position">Full-time Position</option>
+                    <option value="Freelance Work">Freelance Work</option>
+                    <option value="Collaboration">Collaboration</option>
+                    <option value="Testing">Testing</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea id="message" rows="4" required>This is a test message from your portfolio contact form. If you receive this email, your EmailJS setup is working perfectly! 🎉</textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">Send Test Email</button>
+        </form>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init('USER_ID_PLACEHOLDER'); // This will be replaced by public key
+
+        document.getElementById('emailForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const status = document.getElementById('status');
+            
+            // Get credentials
+            const serviceId = document.getElementById('inputServiceId').value.trim();
+            const templateId = document.getElementById('inputTemplateId').value.trim();
+            const publicKey = document.getElementById('inputPublicKey').value.trim();
+            
+            // Validate credentials
+            if (!serviceId || !templateId || !publicKey) {
+                status.innerHTML = '<div class="error">❌ Please fill in all EmailJS credentials</div>';
+                return;
+            }
+            
+            if (serviceId === 'your_service_id_here' || 
+                templateId === 'your_template_id_here' || 
+                publicKey === 'your_public_key_here') {
+                status.innerHTML = '<div class="error">❌ Please replace placeholder values with your actual EmailJS credentials</div>';
+                return;
+            }
+            
+            // Re-initialize EmailJS with provided public key
+            emailjs.init(publicKey);
+            
+            // Get form data
+            const templateParams = {
+                from_name: document.getElementById('fullName').value,
+                from_email: document.getElementById('email').value,
+                company: document.getElementById('company').value || 'Not specified',
+                position: document.getElementById('position').value || 'Not specified',
+                inquiry_type: document.getElementById('inquiryType').value,
+                message: document.getElementById('message').value,
+                to_name: 'Theophilus Alexander Elvan',
+                reply_to: document.getElementById('email').value
+            };
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            status.innerHTML = '<div style="text-align: center;">📤 Sending test email...</div>';
+            
+            try {
+                const result = await emailjs.send(serviceId, templateId, templateParams);
+                console.log('EmailJS Success:', result);
+                
+                status.innerHTML = `
+                    <div class="success">
+                        ✅ <strong>Test email sent successfully!</strong><br>
+                        Check your email inbox (and spam folder) for the test message.<br>
+                        <small>Status: ${result.status} - ${result.text}</small>
+                    </div>
+                `;
+                
+                // Reset form
+                document.getElementById('emailForm').reset();
+                
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                
+                let errorMessage = '❌ Failed to send test email. ';
+                if (error.status === 400) {
+                    errorMessage += 'Check your Service ID and Template ID.';
+                } else if (error.status === 403) {
+                    errorMessage += 'Check your Public Key.';
+                } else {
+                    errorMessage += 'Check the console for details.';
+                }
+                
+                status.innerHTML = `
+                    <div class="error">
+                        ${errorMessage}<br>
+                        <small>Error: ${error.status} - ${error.text || error.message}</small>
+                    </div>
+                `;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Test Email';
+            }
+        });
+    </script>
+</body>
+</html>
