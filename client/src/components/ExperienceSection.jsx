@@ -58,7 +58,7 @@ const ExperienceSection = () => {
       company: "Bina Nusantara University",
       location: "Malang, Indonesia",
       period: "2025 - Present",
-      description: "Lead the premier Computer Science student organization, orchestrating strategic initiatives that transform student experiences and foster professional development. I direct a dynamic team of 50+ dedicated members in executing high-impact programs while maintaining rigorous financial stewardship and operational excellence. My leadership extends beyond organizational management to serve as the authoritative voice for SOCS students, building bridges between student aspirations and institutional goals through innovative community engagement and strategic partnerships.",
+      description: "Lead the premier Computer Science student organization, orchestrating strategic initiatives that transform student experiences and foster professional development. I direct a dynamic team of 42 dedicated members in executing high-impact programs while maintaining rigorous financial stewardship and operational excellence. My leadership extends beyond organizational management to serve as the authoritative voice for SOCS students, building bridges between student aspirations and institutional goals through innovative community engagement and strategic partnerships.",
       achievements: [
         "Orchestrated 15+ professional development workshops, reaching 300+ Computer Science students",
         "Elevated student engagement by 40%, establishing HIMTI as the most active student organization",
