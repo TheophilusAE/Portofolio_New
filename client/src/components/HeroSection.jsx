@@ -17,6 +17,15 @@ const HeroSection = () => {
     }
   };
 
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Theophilus Alexander Elvan-resume.pdf';
+    link.download = 'Theophilus Alexander Elvan-resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-black to-gray-800">
       {/* Background animated shapes */}
@@ -112,6 +121,7 @@ const HeroSection = () => {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <motion.button
+                onClick={downloadCV}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold hover:shadow-lg hover:shadow-blue-500/30 transition-shadow"
