@@ -47,7 +47,7 @@ const ContactSection = () => {
     },
     {
       icon: <FaLinkedinIn size={24} />,
-      url: "www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291",
+      url: "https://www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291/",
       label: "LinkedIn"
     },
     {
