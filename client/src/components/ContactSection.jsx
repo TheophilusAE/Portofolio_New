@@ -47,7 +47,7 @@ const ContactSection = () => {
     },
     {
       icon: <FaLinkedinIn size={24} />,
-      url: "https://www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      url: "www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291",
       label: "LinkedIn"
     },
     {
