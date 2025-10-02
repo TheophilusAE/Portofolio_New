@@ -6,7 +6,7 @@ import { FaGithub, FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 const HeroSection = () => {
   const socialLinks = [
     { icon: <FaGithub size={20} />, url: "https://github.com/TheophilusAE" },
-    { icon: <FaLinkedinIn size={20} />, url: "https://www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+    { icon: <FaLinkedinIn size={20} />, url: "www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291" },
     { icon: <FaInstagram size={20} />, url: "https://www.instagram.com/thoouuuuuu?igsh=ajlnNml4M3c0MjAx" }
   ];
 
