@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
 
 const ProjectsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -85,8 +84,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <AnimatedBackground variant="geometric">
-      <section id="projects" className="py-20 text-white">
+    <section id="projects" className="py-20 bg-gray-950 text-white">
       <motion.div
         ref={ref}
         initial="hidden"

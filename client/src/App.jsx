@@ -11,71 +11,23 @@ import ContactSection from './components/ContactSection';
 
 const App = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      
-      {/* Hero Section with Particles Background */}
-      <AnimatedBackground variant="particles">
+    <AnimatedBackground variant="particles">
+      <div className="min-h-screen">
+        <Navbar />
         <HeroSection />
-      </AnimatedBackground>
-      
-      {/* About Section with Waves Background */}
-      <AnimatedBackground variant="waves">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
-        >
-          <AboutSection />
-        </motion.div>
-      </AnimatedBackground>
-      
-      {/* Education Section with Geometric Background */}
-      <AnimatedBackground variant="geometric">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 1 }}
-        >
-          <EducationSection />
-        </motion.div>
-      </AnimatedBackground>
-      
-      {/* Experience Section with Particles Background */}
-      <AnimatedBackground variant="particles">
+        
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
+          <AboutSection />
+          <EducationSection />
           <ExperienceSection />
-        </motion.div>
-      </AnimatedBackground>
-      
-      {/* Projects Section with Waves Background */}
-      <AnimatedBackground variant="waves">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-        >
           <ProjectsSection />
-        </motion.div>
-      </AnimatedBackground>
-      
-      {/* Contact Section with Geometric Background */}
-      <AnimatedBackground variant="geometric">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1 }}
-        >
           <ContactSection />
         </motion.div>
-      </AnimatedBackground>
-      
-      {/* Footer with Particles Background */}
-      <AnimatedBackground variant="particles">
+        
         <motion.footer 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -99,8 +51,8 @@ const App = () => {
             </motion.p>
           </div>
         </motion.footer>
-      </AnimatedBackground>
-    </div>
+      </div>
+    </AnimatedBackground>
   );
 };
 
