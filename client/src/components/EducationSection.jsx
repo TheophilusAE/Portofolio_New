@@ -15,14 +15,12 @@ const EducationSection = () => {
       school: "Bina Nusantara University",
       period: "2023-2027",
       focus: "Specialized Full Stack Development and also Exploring Artificial Intelligence Development and Machine Learning",
-      achievements: ["Dean's List", "Research Publication", "Merit Scholarship"]
     },
     {
       degree: "High School Diploma (Science Major)",
       school: "SMA Kristen Kanaan Banjarmasin",
       period: "2020-2023",
       focus: "Science Major Focusing on Math and Science Subjects and also Learning Programming Basics",
-      achievements: ["First Class Honours", "Best Final Year Project", "Academic Excellence Award"]
     },
   ];
 
@@ -36,7 +34,7 @@ const EducationSection = () => {
   ];
 
   return (
-    <section id="education" className="py-20 bg-gray-900 text-white">
+    <section id="education" className="py-20 bg-gray-950 text-white">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -70,19 +68,11 @@ const EducationSection = () => {
                     <div className="absolute -left-2.5 top-0">
                       <div className="bg-blue-500 rounded-full w-5 h-5"></div>
                     </div>
-                    <div className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="bg-gray-900/80 p-6 rounded-xl hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
                       <h4 className="text-xl font-semibold text-white mb-2">{edu.degree}</h4>
                       <p className="text-gray-300 mb-1">{edu.school}</p>
                       <p className="text-blue-400 text-sm mb-3">{edu.period}</p>
-                      <p className="text-gray-300 mb-4">{edu.focus}</p>
-                      <div className="space-y-2">
-                        {edu.achievements.map((achievement, i) => (
-                          <div key={i} className="flex items-center space-x-2">
-                            <FaGraduationCap className="text-blue-400 flex-shrink-0" size={14} />
-                            <span className="text-gray-300 text-sm">{achievement}</span>
-                          </div>
-                        ))}
-                      </div>
+                      <p className="text-gray-300">{edu.focus}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -103,10 +93,10 @@ const EducationSection = () => {
                     initial={{ y: 20, opacity: 0 }}
                     animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
+                    className="bg-gray-900/80 p-6 rounded-xl hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="p-3 bg-gray-900 rounded-lg">
+                      <div className="p-3 bg-black/60 rounded-lg">
                         {cert.icon}
                       </div>
                       <div>

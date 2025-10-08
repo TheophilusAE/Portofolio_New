@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGithub, FaExternalLinkAlt, FaFigma } from 'react-icons/fa';
+import AnimatedBackground from './AnimatedBackground';
 
 const ProjectsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -84,7 +85,8 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-900 text-white">
+    <AnimatedBackground variant="geometric">
+      <section id="projects" className="py-20 text-white">
       <motion.div
         ref={ref}
         initial="hidden"
@@ -114,7 +116,7 @@ const ProjectsSection = () => {
                 variants={cardVariants}
                 onHoverStart={() => setHoveredIndex(index)}
                 onHoverEnd={() => setHoveredIndex(null)}
-                className="relative group rounded-xl bg-gray-800 overflow-hidden"
+                className="relative group rounded-xl bg-gray-900/80 overflow-hidden"
               >
                 {/* Project Image */}
                 <div className="relative h-64 overflow-hidden">

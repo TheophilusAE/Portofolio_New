@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import AnimatedBackground from './components/AnimatedBackground';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -9,17 +11,95 @@ import ContactSection from './components/ContactSection';
 
 const App = () => {
   return (
-    <div className="bg-[#121212]">
+    <div className="min-h-screen">
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <EducationSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <ContactSection />
-      <footer className="py-6 bg-[#121212] text-center text-gray-400 text-sm border-t border-gray-800">
-        <p>© {new Date().getFullYear()} Theophilus Alexander Elvan. All rights reserved.</p>
-      </footer>
+      
+      {/* Hero Section with Particles Background */}
+      <AnimatedBackground variant="particles">
+        <HeroSection />
+      </AnimatedBackground>
+      
+      {/* About Section with Waves Background */}
+      <AnimatedBackground variant="waves">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 1 }}
+        >
+          <AboutSection />
+        </motion.div>
+      </AnimatedBackground>
+      
+      {/* Education Section with Geometric Background */}
+      <AnimatedBackground variant="geometric">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 1 }}
+        >
+          <EducationSection />
+        </motion.div>
+      </AnimatedBackground>
+      
+      {/* Experience Section with Particles Background */}
+      <AnimatedBackground variant="particles">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        >
+          <ExperienceSection />
+        </motion.div>
+      </AnimatedBackground>
+      
+      {/* Projects Section with Waves Background */}
+      <AnimatedBackground variant="waves">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+        >
+          <ProjectsSection />
+        </motion.div>
+      </AnimatedBackground>
+      
+      {/* Contact Section with Geometric Background */}
+      <AnimatedBackground variant="geometric">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 1 }}
+        >
+          <ContactSection />
+        </motion.div>
+      </AnimatedBackground>
+      
+      {/* Footer with Particles Background */}
+      <AnimatedBackground variant="particles">
+        <motion.footer 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="py-8 text-center text-gray-400 text-sm border-t border-gray-800/70 backdrop-blur-sm bg-gray-950/40"
+        >
+          <div className="container mx-auto px-4">
+            <motion.p
+              whileHover={{ scale: 1.05 }}
+              className="mb-2"
+            >
+              © {new Date().getFullYear()} Theophilus Alexander Elvan. All rights reserved.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+              className="text-xs text-gray-500"
+            >
+              Built with React, Framer Motion & Tailwind CSS
+            </motion.p>
+          </div>
+        </motion.footer>
+      </AnimatedBackground>
     </div>
   );
 };

@@ -85,7 +85,7 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 bg-gray-900 text-white">
+    <section id="experience" className="py-20 bg-gray-950 text-white">
       <div className="container mx-auto px-4">
         <motion.div
           ref={ref}
@@ -125,12 +125,12 @@ const ExperienceSection = () => {
                   className="relative pl-16"
                 >
                   {/* Timeline Icon */}
-                  <div className="absolute left-0 p-3 bg-gray-800 rounded-full border-4 border-gray-900">
+                  <div className="absolute left-0 p-3 bg-gray-900 rounded-full border-4 border-black">
                     {exp.icon}
                   </div>
 
                   {/* Content Card */}
-                  <div className="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+                  <div className="bg-gray-900/80 rounded-xl p-6 hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
                     {/* Header */}
                     <div className="flex flex-wrap justify-between items-start mb-4">
                       <div>
@@ -141,7 +141,7 @@ const ExperienceSection = () => {
                           {exp.company} • {exp.location}
                         </p>
                       </div>
-                      <span className="text-gray-400 text-sm bg-gray-800/80 px-3 py-1 rounded-full border border-gray-700/50">
+                      <span className="text-gray-400 text-sm bg-gray-900/80 px-3 py-1 rounded-full border border-gray-800/70">
                         {exp.period}
                       </span>
                     </div>
