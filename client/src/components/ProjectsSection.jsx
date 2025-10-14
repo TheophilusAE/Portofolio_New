@@ -40,7 +40,6 @@ const ProjectsSection = () => {
       image: "/Befit.png",
       technologies: ["Figma", "UI/UX Design", "Prototype", "Mobile Design"],
       figma: "https://www.figma.com/design/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=3TpS66WfEnXMLdk7-1",
-      live: "https://www.figma.com/proto/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=TdFWiuwRWBQ73Zud-1",
       color: "from-pink-400 to-red-500",
       type: "figma"
     },
@@ -50,7 +49,6 @@ const ProjectsSection = () => {
       image: "/SIDONDAR.png",
       technologies: ["Figma", "UI/UX Design", "Website Redesign", "User Research"],
       figma: "https://www.figma.com/design/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=pt1PRJTI1z1wxOIA-1",
-      live: "https://www.figma.com/proto/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=YvdihmaLjV3n59p5-1",
       color: "from-red-400 to-pink-500",
       type: "figma"
     },
