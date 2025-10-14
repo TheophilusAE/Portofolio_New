@@ -84,7 +84,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-950 text-white">
+    <section id="projects" className="py-20 bg-transparent text-white">
       <motion.div
         ref={ref}
         initial="hidden"

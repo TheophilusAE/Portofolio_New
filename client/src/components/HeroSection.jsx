@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { FaGithub, FaLinkedinIn, FaInstagram, FaWhatsapp, FaChevronDown } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
+import CVModal from './CVModal';
 
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isCVModalOpen, setIsCVModalOpen] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -49,18 +50,12 @@ const HeroSection = () => {
     }
   };
 
-  const downloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Theophilus Alexander Elvan-resume.pdf';
-    link.download = 'Theophilus Alexander Elvan-resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const openCVModal = () => {
+    setIsCVModalOpen(true);
   };
 
   return (
-    <AnimatedBackground variant="particles">
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
 
 
       {/* Enhanced background effects */}
@@ -241,7 +236,7 @@ const HeroSection = () => {
               className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
             >
               <motion.button
-                onClick={downloadCV}
+                onClick={openCVModal}
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)"
@@ -376,8 +371,13 @@ const HeroSection = () => {
           </motion.button>
         </motion.div>
       </div>
+
+      {/* CV Selection Modal */}
+      <CVModal 
+        isOpen={isCVModalOpen} 
+        onClose={() => setIsCVModalOpen(false)} 
+      />
     </section>
-    </AnimatedBackground>
   );
 };
 

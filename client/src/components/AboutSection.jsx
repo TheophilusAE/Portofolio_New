@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaCode, FaLaptopCode, FaPuzzlePiece, FaRocket, FaBrain, FaUsers } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
 
 const AboutSection = () => {
   const [ref, inView] = useInView({
@@ -73,8 +72,7 @@ const AboutSection = () => {
   };
 
   return (
-    <AnimatedBackground variant="waves">
-      <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="py-20 relative overflow-hidden bg-transparent">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl"></div>
@@ -292,7 +290,6 @@ const AboutSection = () => {
         </motion.div>
       </div>
     </section>
-    </AnimatedBackground>
   );
 };
 

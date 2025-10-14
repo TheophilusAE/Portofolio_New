@@ -1,10 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const AnimatedBackground = ({ children, variant = 'particles' }) => {
   const [time, setTime] = useState(0);
   const particleCount = 80;
-  const particles = Array.from({ length: particleCount }, (_, i) => i);
+  const particlesData = useMemo(() => {
+    return Array.from({ length: particleCount }, (_, i) => {
+      const delay = Math.random() * 20;
+      const duration = Math.random() * 15 + 10;
+      const xMovement = Math.random() * 200 - 100;
+      const yMovement = Math.random() * 200 - 100;
+      const left = `${Math.random() * 100}%`;
+      const top = `${Math.random() * 100}%`;
+      const size = Math.random() * 4 + 2;
+      const colorIdx = i % 3;
+      const background = colorIdx === 0
+        ? 'rgba(59, 130, 246, 0.7)'
+        : colorIdx === 1
+        ? 'rgba(139, 92, 246, 0.7)'
+        : 'rgba(16, 185, 129, 0.7)';
+      return { id: i, delay, duration, xMovement, yMovement, left, top, size, background };
+    });
+  }, [particleCount]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -18,7 +35,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
       <div className="relative overflow-hidden bg-gray-950">
         {/* Dynamic animated gradient background */}
         <motion.div 
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           animate={{
             background: [
               "radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.25) 0%, transparent 50%)",
@@ -36,7 +53,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         
         {/* Moving mesh gradient */}
         <motion.div
-          className="absolute inset-0 opacity-50"
+          className="absolute inset-0 opacity-50 pointer-events-none"
           style={{
             background: `conic-gradient(from ${time * 60}deg at 50% 50%, 
               rgba(59, 130, 246, 0.15) 0deg,
@@ -48,48 +65,37 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
         
         {/* Enhanced floating particles */}
-        <div className="absolute inset-0">
-          {particles.map((particle) => {
-            const delay = Math.random() * 20;
-            const duration = Math.random() * 15 + 10;
-            const xMovement = Math.random() * 200 - 100;
-            const yMovement = Math.random() * 200 - 100;
-            
-            return (
-              <motion.div
-                key={particle}
-                className="absolute rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  width: `${Math.random() * 4 + 2}px`,
-                  height: `${Math.random() * 4 + 2}px`,
-                  background: particle % 3 === 0 
-                    ? 'rgba(59, 130, 246, 0.7)' 
-                    : particle % 3 === 1 
-                    ? 'rgba(139, 92, 246, 0.7)' 
-                    : 'rgba(16, 185, 129, 0.7)'
-                }}
-                animate={{
-                  y: [0, yMovement, 0],
-                  x: [0, xMovement, 0],
-                  opacity: [0, 1, 0.5, 1, 0],
-                  scale: [0, 1, 1.2, 1, 0],
-                }}
-                transition={{
-                  duration: duration,
-                  repeat: Infinity,
-                  delay: delay,
-                  ease: "easeInOut",
-                }}
-              />
-            );
-          })}
+        <div className="absolute inset-0 pointer-events-none">
+          {particlesData.map((p) => (
+            <motion.div
+              key={p.id}
+              className="absolute rounded-full"
+              style={{
+                left: p.left,
+                top: p.top,
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                background: p.background,
+              }}
+              animate={{
+                y: [0, p.yMovement, 0],
+                x: [0, p.xMovement, 0],
+                opacity: [0, 1, 0.5, 1, 0],
+                scale: [0, 1, 1.2, 1, 0],
+              }}
+              transition={{
+                duration: p.duration,
+                repeat: Infinity,
+                delay: p.delay,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
         </div>
 
         {/* Dynamic floating orbs */}
         <motion.div
-          className="absolute w-40 h-40 rounded-full blur-2xl"
+          className="absolute w-40 h-40 rounded-full blur-2xl pointer-events-none"
           style={{
             background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
             left: '10%',
@@ -108,7 +114,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
         
         <motion.div
-          className="absolute w-32 h-32 rounded-full blur-2xl"
+          className="absolute w-32 h-32 rounded-full blur-2xl pointer-events-none"
           style={{
             background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)',
             right: '15%',
@@ -127,7 +133,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         <motion.div
-          className="absolute w-28 h-28 rounded-full blur-xl"
+          className="absolute w-28 h-28 rounded-full blur-xl pointer-events-none"
           style={{
             background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
             left: '60%',
@@ -146,7 +152,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         {/* Floating geometric shapes */}
-        <div className="absolute inset-0">
+  <div className="absolute inset-0 pointer-events-none">
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
@@ -181,7 +187,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
 
         {/* Animated wave patterns */}
         <motion.div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 pointer-events-none"
           animate={{
             background: [
               `linear-gradient(45deg, transparent 0%, rgba(59, 130, 246, 0.2) 50%, transparent 100%)`,
@@ -211,7 +217,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
       <div className="relative overflow-hidden bg-gray-950">
         {/* Multiple animated wave layers */}
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `linear-gradient(0deg, 
               rgba(59, 130, 246, 0.2) 0%, 
@@ -229,7 +235,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `linear-gradient(120deg, 
               transparent 0%, 
@@ -248,7 +254,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `linear-gradient(240deg, 
               transparent 0%, 
@@ -267,7 +273,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         {/* Flowing wave patterns */}
-        <div className="absolute inset-0">
+  <div className="absolute inset-0 pointer-events-none">
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
@@ -299,7 +305,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         </div>
 
         {/* Ripple effects */}
-        <div className="absolute inset-0">
+  <div className="absolute inset-0 pointer-events-none">
           {[...Array(4)].map((_, i) => (
             <motion.div
               key={i}
@@ -338,7 +344,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
       <div className="relative overflow-hidden bg-gray-950">
         {/* Rotating geometric background */}
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `conic-gradient(from ${time * 30}deg at 30% 70%, 
               rgba(59, 130, 246, 0.15) 0deg,
@@ -351,7 +357,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
 
         {/* Dynamic grid pattern */}
         <motion.div
-          className="absolute inset-0 opacity-50"
+          className="absolute inset-0 opacity-50 pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px),
                             linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px)`,
@@ -368,56 +374,36 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         {/* Floating geometric shapes */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => {
+        <div className="absolute inset-0 pointer-events-none">
+          {useMemo(() => {
             const shapes = ['triangle', 'square', 'hexagon', 'circle'];
-            const shape = shapes[i % shapes.length];
-            const size = Math.random() * 30 + 20;
-            
-            return (
-              <motion.div
-                key={i}
-                className={`absolute ${
-                  shape === 'circle' ? 'rounded-full' :
-                  shape === 'square' ? 'rounded-lg' :
-                  shape === 'triangle' ? 'rounded-sm' :
-                  'rounded-md'
-                } border-2 ${
-                  i % 4 === 0 ? 'border-blue-400/50' :
-                  i % 4 === 1 ? 'border-purple-400/50' :
-                  i % 4 === 2 ? 'border-green-400/50' :
-                  'border-pink-400/50'
-                }`}
-                style={{
-                  width: `${size}px`,
-                  height: `${size}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  clipPath: shape === 'triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' :
-                           shape === 'hexagon' ? 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)' :
-                           'none'
-                }}
-                animate={{
-                  rotate: [0, 360],
-                  scale: [0.5, 1.2, 0.8, 1],
-                  opacity: [0.3, 0.9, 0.4, 0.7, 0.3],
-                  x: [0, Math.random() * 200 - 100],
-                  y: [0, Math.random() * 200 - 100],
-                }}
-                transition={{
-                  duration: Math.random() * 25 + 15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.5,
-                }}
-              />
-            );
-          })}
+            return Array.from({ length: 20 }, (_, i) => {
+              const shape = shapes[i % shapes.length];
+              const size = Math.random() * 30 + 20;
+              const left = `${Math.random() * 100}%`;
+              const top = `${Math.random() * 100}%`;
+              const xMove = Math.random() * 200 - 100;
+              const yMove = Math.random() * 200 - 100;
+              const duration = Math.random() * 25 + 15;
+              const borderColor = i % 4 === 0 ? 'border-blue-400/50' : i % 4 === 1 ? 'border-purple-400/50' : i % 4 === 2 ? 'border-green-400/50' : 'border-pink-400/50';
+              const clipPath = shape === 'triangle' ? 'polygon(50% 0%, 0% 100%, 100% 100%)' : shape === 'hexagon' ? 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)' : 'none';
+              const rounded = shape === 'circle' ? 'rounded-full' : shape === 'square' ? 'rounded-lg' : shape === 'triangle' ? 'rounded-sm' : 'rounded-md';
+              return (
+                <motion.div
+                  key={i}
+                  className={`absolute ${rounded} border-2 ${borderColor}`}
+                  style={{ width: `${size}px`, height: `${size}px`, left, top, clipPath }}
+                  animate={{ rotate: [0, 360], scale: [0.5, 1.2, 0.8, 1], opacity: [0.3, 0.9, 0.4, 0.7, 0.3], x: [0, xMove], y: [0, yMove] }}
+                  transition={{ duration, repeat: Infinity, ease: 'easeInOut', delay: i * 0.5 }}
+                />
+              );
+            });
+          }, [])}
         </div>
 
         {/* Morphing shapes */}
         <motion.div
-          className="absolute w-40 h-40"
+          className="absolute w-40 h-40 pointer-events-none"
           style={{
             left: '20%',
             top: '30%',
@@ -442,7 +428,7 @@ const AnimatedBackground = ({ children, variant = 'particles' }) => {
         />
 
         <motion.div
-          className="absolute w-32 h-32"
+          className="absolute w-32 h-32 pointer-events-none"
           style={{
             right: '25%',
             bottom: '25%',

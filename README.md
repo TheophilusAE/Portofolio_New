@@ -42,3 +42,24 @@ The contact form is powered by EmailJS for direct email communication.
 
 ## 👨‍💻 About
 Portfolio website for Theophilus Alexander Elvan - Computer Science Student & Academic Leader.
+
+## 🎨 Animated Background
+The site uses a global animated background powered by Framer Motion. It's wrapped around the entire app in `client/src/App.jsx` via the `AnimatedBackground` component.
+
+- Switch variants by editing `App.jsx`:
+	- `variant="particles"` (default)
+	- `variant="waves"`
+	- `variant="geometric"`
+
+Example:
+
+```
+<AnimatedBackground variant="particles">
+	{/* content */}
+</AnimatedBackground>
+```
+
+Notes:
+- Sections use transparent backgrounds so the animation shows through.
+- Surfaces use translucent backgrounds (e.g., `bg-gray-900/60`) to keep text readable.
+- Background layers are non-interactive (`pointer-events: none`) so links and buttons remain clickable.
