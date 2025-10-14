@@ -124,78 +124,6 @@ const ProjectsSection = () => {
                     alt={project.title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
-                  
-                  {/* Overlay with links */}
-                  <motion.div
-                    animate={{
-                      opacity: hoveredIndex === index ? 1 : 0,
-                      y: hoveredIndex === index ? 0 : 20
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 flex items-center justify-center gap-4 bg-black/60"
-                  >
-                    {project.type === "dual-github" && (
-                      <>
-                        <a
-                          href={project.github.frontend}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group/btn"
-                          title="Frontend Repository"
-                        >
-                          <FaGithub size={20} />
-                          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-black/80 px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-                            Frontend
-                          </span>
-                        </a>
-                        <a
-                          href={project.github.backend}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group/btn"
-                          title="Backend Repository"
-                        >
-                          <FaGithub size={20} />
-                          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-black/80 px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-                            Backend
-                          </span>
-                        </a>
-                      </>
-                    )}
-                    
-                    {project.type === "single-github" && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                      >
-                        <FaGithub size={20} />
-                      </a>
-                    )}
-                    
-                    {project.type === "figma" && (
-                      <a
-                        href={project.figma}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                      >
-                        <FaFigma size={20} />
-                      </a>
-                    )}
-                    
-                    {project.live && project.live !== "#" && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                      >
-                        <FaExternalLinkAlt size={20} />
-                      </a>
-                    )}
-                  </motion.div>
                 </div>
 
                 {/* Project Info */}
@@ -206,6 +134,81 @@ const ProjectsSection = () => {
                   <p className="text-gray-400 mb-4 text-sm">
                     {project.description}
                   </p>
+                  
+                  {/* Project Links */}
+                  <div className="flex flex-wrap gap-3 mb-4">
+                    {project.type === "dual-github" && (
+                      <>
+                        <motion.a
+                          href={project.github.frontend}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors duration-200"
+                          title="Frontend Repository"
+                        >
+                          <FaGithub size={16} />
+                          <span>Frontend</span>
+                        </motion.a>
+                        <motion.a
+                          href={project.github.backend}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors duration-200"
+                          title="Backend Repository"
+                        >
+                          <FaGithub size={16} />
+                          <span>Backend</span>
+                        </motion.a>
+                      </>
+                    )}
+                    
+                    {project.type === "single-github" && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 text-white text-sm rounded-lg transition-colors duration-200"
+                      >
+                        <FaGithub size={16} />
+                        <span>GitHub</span>
+                      </motion.a>
+                    )}
+                    
+                    {project.type === "figma" && (
+                      <motion.a
+                        href={project.figma}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-3 py-2 bg-purple-600 hover:bg-purple-700 text-white text-sm rounded-lg transition-colors duration-200"
+                      >
+                        <FaFigma size={16} />
+                        <span>Design</span>
+                      </motion.a>
+                    )}
+                    
+                    {project.live && project.live !== "#" && (
+                      <motion.a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm rounded-lg transition-colors duration-200"
+                      >
+                        <FaExternalLinkAlt size={16} />
+                        <span>Live Demo</span>
+                      </motion.a>
+                    )}
+                  </div>
+                  
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, idx) => (
                       <span
