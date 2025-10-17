@@ -57,7 +57,7 @@ const ProjectsSection = () => {
       description: "This project involves the full-stack development of the official profile website for Gereja Pantekosta di Indonesia (GPdI) Jemaat Persadamas Banjarmasin. My team is currently designing and building a responsive, user-friendly platform that will serve as the primary digital face for the congregation. The website's core function is to provide key information about the church's vision, mission, history, schedule of services, contact details, and various ministries. The goal is to enhance digital outreach, improve communication with current members, and provide a welcoming resource for the wider community.",
       image: "/GPDI.png",
       technologies: ["Vue.js", "Firebase", "Vuetify", "PWA"],
-      github: "https://github.com/TheophilusAE/GPDI-3",
+      github: "https://github.com/TheophilusAE/Web-GPDI-Persadamas-Banjarmasin",
       live: "https://gpdi-persadamas-banjarmasin.vercel.app/",
       color: "from-purple-400 to-blue-500",
       type: "single-github"
