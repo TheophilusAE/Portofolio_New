@@ -1,14 +1,22 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaCode, FaLaptopCode, FaPuzzlePiece, FaRocket, FaBrain, FaUsers } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
+import { FaCode, FaLaptopCode, FaPuzzlePiece, FaRocket, FaBrain, FaUsers, FaGraduationCap } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
 
 const AboutSection = () => {
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
   });
+
+  const sectionRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [-40, 40]);
 
   const skills = [
     {
@@ -73,8 +81,7 @@ const AboutSection = () => {
   };
 
   return (
-    <AnimatedBackground variant="waves">
-      <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" ref={sectionRef} className="py-20 relative overflow-hidden bg-gray-950">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 bg-blue-500/5 rounded-full blur-xl"></div>
@@ -91,32 +98,13 @@ const AboutSection = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div 
-            variants={itemVariants}
-            className="text-center mb-20"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="inline-block"
-            >
-              <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-                About{" "}
-                <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
-                  Me
-                </span>
-              </h2>
-            </motion.div>
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
-            >
-              Academic leader, mentor, and technology enthusiast
-            </motion.p>
-            <motion.div
-              variants={itemVariants}
-              className="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 mx-auto mt-6 rounded-full"
-            />
-          </motion.div>
+          <SectionHeader
+            eyebrow="Get To Know Me"
+            title="About"
+            highlight="Me"
+            subtitle="Academic leader, mentor, and technology enthusiast"
+            className="mb-20"
+          />
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Profile Image with enhanced effects */}
@@ -124,7 +112,7 @@ const AboutSection = () => {
               variants={itemVariants}
               className="relative order-2 lg:order-1"
             >
-              <div className="relative group">
+              <motion.div style={{ y: imageY }} className="relative group">
                 {/* Glowing background */}
                 <motion.div
                   animate={{
@@ -167,11 +155,12 @@ const AboutSection = () => {
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    className="absolute top-6 right-6 bg-blue-500/90 backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-semibold"
+                    className="absolute top-6 right-6 flex items-center gap-2 bg-blue-500/90 backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-semibold"
                   >
-                    💻 Developer
+                    <FaLaptopCode size={14} />
+                    Developer
                   </motion.div>
-                  
+
                   <motion.div
                     animate={{
                       y: [0, 8, 0],
@@ -183,12 +172,13 @@ const AboutSection = () => {
                       ease: "easeInOut",
                       delay: 1,
                     }}
-                    className="absolute bottom-6 left-6 bg-purple-500/90 backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-semibold"
+                    className="absolute bottom-6 left-6 flex items-center gap-2 bg-purple-500/90 backdrop-blur-sm text-white px-3 py-2 rounded-full text-sm font-semibold"
                   >
-                    🎓 Student
+                    <FaGraduationCap size={14} />
+                    Student
                   </motion.div>
                 </motion.div>
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* About Content */}
@@ -292,7 +282,6 @@ const AboutSection = () => {
         </motion.div>
       </div>
     </section>
-    </AnimatedBackground>
   );
 };
 

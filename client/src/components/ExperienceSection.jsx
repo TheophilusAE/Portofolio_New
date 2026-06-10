@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaBriefcase, FaCode, FaLightbulb, FaUsers, FaTasks, FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
 
 const ExperienceSection = () => {
   const [expandedCard, setExpandedCard] = useState(null);
@@ -95,19 +96,12 @@ const ExperienceSection = () => {
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">Experience</h2>
-              <p className="text-gray-400 text-lg">
-                My journey through academic leadership and educational excellence
-              </p>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4"></div>
-            </motion.div>
-          </div>
+          <SectionHeader
+            eyebrow="Career Path"
+            title="My"
+            highlight="Experience"
+            subtitle="My journey through academic leadership and educational excellence"
+          />
 
           {/* Experience Timeline */}
           <div className="relative">

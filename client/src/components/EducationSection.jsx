@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FaGraduationCap, FaCertificate, FaTrophy } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
 
 const EducationSection = () => {
   const [ref, inView] = useInView({
@@ -43,10 +44,11 @@ const EducationSection = () => {
           transition={{ duration: 0.8 }}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Education & Certifications</h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-          </div>
+          <SectionHeader
+            eyebrow="My Background"
+            title="Education &"
+            highlight="Certifications"
+          />
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Education Timeline */}

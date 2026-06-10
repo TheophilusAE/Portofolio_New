@@ -3,6 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white
+           bg-gradient-to-r from-blue-500 to-purple-500 bg-[length:200%_100%] bg-left
+           shadow-lg shadow-blue-500/20
+           transition-all duration-300
+           hover:bg-right hover:shadow-xl hover:shadow-purple-500/30;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white
+           border-2 border-gray-700 backdrop-blur-sm
+           transition-all duration-300
+           hover:border-blue-500/60 hover:bg-gray-900/50;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,105 +33,58 @@ body {
   overflow-x: hidden;
 }
 
-/* Animated gradient background */
-@keyframes gradient-xy {
-  0%, 100% {
-    background-size: 400% 400%;
-    background-position: left center;
-  }
-  50% {
-    background-size: 200% 200%;
-    background-position: right center;
-  }
+/* Rotating conic-gradient mesh used by AnimatedBackground.
+   Oversized + centered so it always covers the viewport while rotating. */
+@keyframes mesh-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-.animated-gradient {
-  background: linear-gradient(-45deg, #030712, #111827, #1f2937, #0f172a);
-  background-size: 400% 400%;
-  animation: gradient-xy 15s ease infinite;
-}
-
-/* Floating particles animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(180deg); }
-}
-
-@keyframes float-delayed {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(90deg); }
-}
-
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(45deg); }
-}
-
-.floating-1 {
-  animation: float 6s ease-in-out infinite;
-}
-
-.floating-2 {
-  animation: float-delayed 8s ease-in-out infinite;
-}
-
-.floating-3 {
-  animation: float-slow 10s ease-in-out infinite;
-}
-
-/* Pulse animation for elements */
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.05);
-  }
-}
-
-.pulse-soft {
-  animation: pulse-soft 4s ease-in-out infinite;
-}
-
-/* Glowing effect */
-.glow {
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5),
-              0 0 40px rgba(59, 130, 246, 0.3),
-              0 0 60px rgba(59, 130, 246, 0.1);
-}
-
-.glow-purple {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5),
-              0 0 40px rgba(139, 92, 246, 0.3),
-              0 0 60px rgba(139, 92, 246, 0.1);
-}
-
-/* Text shimmer effect */
-@keyframes shimmer {
-  0% {
-    background-position: -200px 0;
-  }
-  100% {
-    background-position: calc(200px + 100%) 0;
-  }
-}
-
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
+.mesh-gradient {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  opacity: 0.5;
+  background: conic-gradient(from 0deg at 50% 50%,
+    rgba(59, 130, 246, 0.15) 0deg,
+    rgba(139, 92, 246, 0.15) 120deg,
+    rgba(16, 185, 129, 0.15) 240deg,
+    rgba(59, 130, 246, 0.15) 360deg
   );
-  background-size: 200px 100%;
-  animation: shimmer 2s infinite;
+  animation: mesh-rotate 60s linear infinite;
 }
 
-/* Tilt effect */
-.tilt:hover {
-  transform: perspective(1000px) rotateX(10deg) rotateY(10deg) rotateZ(2deg);
+/* Crossfading ambient glow layers used by AnimatedBackground */
+@keyframes glow-fade {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.bg-glow-a,
+.bg-glow-b {
+  position: absolute;
+  inset: 0;
+  animation: glow-fade 16s ease-in-out infinite;
+}
+
+.bg-glow-a {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.25) 0%, transparent 50%);
+}
+
+.bg-glow-b {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(245, 101, 101, 0.25) 0%, transparent 50%);
+  animation-direction: reverse;
+}
+
+/* Mouse-follow spotlight glow, positioned via --spot-x/--spot-y custom properties */
+.cursor-glow {
+  background: radial-gradient(600px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(96, 165, 250, 0.15), transparent 40%);
 }
 
 /* Background patterns */
@@ -124,8 +94,26 @@ body {
 }
 
 .grid-pattern {
-  background-image: 
+  background-image:
     linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
+}
+
+/* Respect users who prefer reduced motion: tone down decorative CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  .mesh-gradient,
+  .bg-glow-a,
+  .bg-glow-b {
+    animation: none;
+  }
+
+  .bg-glow-b {
+    opacity: 0.6;
+  }
+
+  .cursor-glow,
+  .animate-ping {
+    display: none;
+  }
 }

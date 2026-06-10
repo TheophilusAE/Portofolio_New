@@ -1,21 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedinIn, FaInstagram, FaWhatsapp, FaChevronDown } from 'react-icons/fa';
-import AnimatedBackground from './AnimatedBackground';
+import { FaGithub, FaLinkedinIn, FaInstagram, FaChevronDown, FaCommentDots } from 'react-icons/fa';
+import DownloadCVButton from './DownloadCVButton';
+import MagneticElement from './MagneticElement';
 
 const HeroSection = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const controls = useAnimation();
+  const heroRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
+    if (shouldReduceMotion) return undefined;
+    const el = heroRef.current;
+    if (!el) return undefined;
+
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const rect = el.getBoundingClientRect();
+      el.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+      el.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+    el.addEventListener('mousemove', handleMouseMove);
+    return () => el.removeEventListener('mousemove', handleMouseMove);
+  }, [shouldReduceMotion]);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 120]);
 
   const socialLinks = [
     { 
@@ -49,19 +62,16 @@ const HeroSection = () => {
     }
   };
 
-  const downloadCV = () => {
-    const link = document.createElement('a');
-    link.href = '/Theophilus Alexander Elvan-resume.pdf';
-    link.download = 'Theophilus Alexander Elvan-resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // Single download replaced by dropdown component
 
   return (
-    <AnimatedBackground variant="particles">
-      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-
+    <section
+      id="home"
+      ref={heroRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950 group/hero"
+    >
+      {/* Mouse-follow spotlight */}
+      <div className="cursor-glow absolute inset-0 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
       {/* Enhanced background effects */}
       <div className="absolute inset-0">
@@ -124,7 +134,20 @@ const HeroSection = () => {
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
-            <motion.h2 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-300 text-xs sm:text-sm font-medium"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+              </span>
+              Available for Opportunities
+            </motion.div>
+
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
@@ -240,50 +263,35 @@ const HeroSection = () => {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
             >
-              <motion.button
-                onClick={downloadCV}
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 30px rgba(59, 130, 246, 0.4)"
+              <DownloadCVButton
+                creative={{
+                  label: 'Creative CV',
+                  path: '/CV%20Theophilus%20Alexander%20Elvan%20(1).pdf',
+                  filename: 'CV Theophilus Alexander Elvan (1).pdf',
                 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold overflow-hidden transition-all duration-300"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
-                <span className="relative z-10 flex items-center justify-center">
-                  Download CV
-                  <motion.div
-                    className="ml-2"
-                    animate={{ y: [0, -2, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    📄
-                  </motion.div>
-                </span>
-              </motion.button>
+                ats={{
+                  label: 'ATS CV',
+                  path: '/Theophilus%20Alexander%20Elvan-resume.pdf',
+                  filename: 'Theophilus Alexander Elvan-resume.pdf',
+                }}
+              />
               
-              <motion.button
-                onClick={scrollToContact}
-                whileHover={{ 
-                  scale: 1.05,
-                  borderColor: "rgb(59, 130, 246)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="group px-8 py-4 rounded-full border-2 border-gray-700 text-white hover:bg-gray-900/50 transition-all duration-300 font-semibold backdrop-blur-sm"
-              >
-                <span className="flex items-center justify-center">
+              <MagneticElement strength={0.3}>
+                <motion.button
+                  onClick={scrollToContact}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-secondary"
+                >
                   Contact Me
-                  <motion.div
-                    className="ml-2"
+                  <motion.span
                     animate={{ x: [0, 3, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    💬
-                  </motion.div>
-                </span>
-              </motion.button>
+                    <FaCommentDots />
+                  </motion.span>
+                </motion.button>
+              </MagneticElement>
             </motion.div>
           </motion.div>
 
@@ -294,7 +302,7 @@ const HeroSection = () => {
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="relative"
           >
-            <div className="relative w-full h-[500px] lg:h-[600px]">
+            <motion.div style={{ y: imageY }} className="relative w-full h-[500px] lg:h-[600px]">
               {/* Glowing background effect */}
               <motion.div
                 animate={{
@@ -354,7 +362,7 @@ const HeroSection = () => {
                   className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-80"
                 />
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -377,7 +385,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
     </section>
-    </AnimatedBackground>
   );
 };
 

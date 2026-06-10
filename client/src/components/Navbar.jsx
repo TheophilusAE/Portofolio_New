@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { FaBars, FaTimes, FaCode } from 'react-icons/fa';
+import { FaBars, FaTimes, FaCode, FaHome, FaUser, FaGraduationCap, FaBriefcase, FaRocket, FaEnvelope } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,12 +37,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { title: 'Home', to: 'home', icon: '🏠' },
-    { title: 'About', to: 'about', icon: '👨‍💻' },
-    { title: 'Education', to: 'education', icon: '🎓' },
-    { title: 'Experience', to: 'experience', icon: '💼' },
-    { title: 'Projects', to: 'projects', icon: '🚀' },
-    { title: 'Contact', to: 'contact', icon: '📧' },
+    { title: 'Home', to: 'home', icon: <FaHome /> },
+    { title: 'About', to: 'about', icon: <FaUser /> },
+    { title: 'Education', to: 'education', icon: <FaGraduationCap /> },
+    { title: 'Experience', to: 'experience', icon: <FaBriefcase /> },
+    { title: 'Projects', to: 'projects', icon: <FaRocket /> },
+    { title: 'Contact', to: 'contact', icon: <FaEnvelope /> },
   ];
 
   const toggleMobileMenu = () => {
@@ -59,10 +59,10 @@ const Navbar = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed w-full z-40 transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-gray-950 border-b border-gray-800/70 shadow-2xl shadow-blue-500/10' 
-            : 'bg-gray-950'
+        className={`fixed w-full z-40 backdrop-blur-xl border-b transition-all duration-500 ${
+          isScrolled
+            ? 'bg-gray-950/80 border-gray-800/70 shadow-2xl shadow-blue-500/10'
+            : 'bg-gray-950/40 border-white/5'
         }`}
         style={{ top: '0px' }}
       >

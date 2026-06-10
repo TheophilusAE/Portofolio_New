@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-scroll';
 import emailjs from '@emailjs/browser';
-import { 
-  FaGithub, 
-  FaLinkedinIn, 
-  FaInstagram, 
+import {
+  FaGithub,
+  FaLinkedinIn,
+  FaInstagram,
   FaEnvelope,
   FaMapMarkerAlt,
   FaPhone,
@@ -14,6 +14,8 @@ import {
   FaCheckCircle,
   FaTimesCircle
 } from 'react-icons/fa';
+import SectionHeader from './SectionHeader';
+import MagneticElement from './MagneticElement';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -202,30 +204,12 @@ const ContactSection = () => {
       >
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
-          <motion.div 
-            variants={itemVariants}
-            className="text-center mb-20"
-          >
-            <motion.h2
-              whileHover={{ scale: 1.05 }}
-              className="text-4xl md:text-6xl font-bold mb-6 text-white"
-            >
-              Get In{" "}
-              <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
-                Touch
-              </span>
-            </motion.h2>
-            <motion.p
-              variants={itemVariants}
-              className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto"
-            >
-              Interested in working together? Let's discuss opportunities and create something amazing!
-            </motion.p>
-            <motion.div
-              variants={itemVariants}
-              className="w-32 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 mx-auto mt-6 rounded-full"
-            />
-          </motion.div>
+          <SectionHeader
+            eyebrow="Contact"
+            title="Get In"
+            highlight="Touch"
+            subtitle="Interested in working together? Let's discuss opportunities and create something amazing!"
+          />
 
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Info */}
@@ -294,30 +278,31 @@ const ContactSection = () => {
                 </h4>
                 <div className="flex space-x-4">
                   {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ 
-                        scale: 1.1, 
-                        y: -5,
-                        rotate: 5
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                      className={`group relative w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 transition-all duration-300 shadow-lg hover:shadow-xl ${social.color}`}
-                    >
-                      <motion.div
-                        className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      />
-                      <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="relative z-10"
+                    <MagneticElement key={index} strength={0.5}>
+                      <motion.a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{
+                          scale: 1.1,
+                          y: -5,
+                          rotate: 5
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        className={`group relative w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center text-gray-400 transition-all duration-300 shadow-lg hover:shadow-xl ${social.color}`}
                       >
-                        {social.icon}
-                      </motion.div>
-                    </motion.a>
+                        <motion.div
+                          className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        />
+                        <motion.div
+                          whileHover={{ rotate: 360 }}
+                          transition={{ duration: 0.6 }}
+                          className="relative z-10"
+                        >
+                          {social.icon}
+                        </motion.div>
+                      </motion.a>
+                    </MagneticElement>
                   ))}
                 </div>
               </motion.div>
@@ -521,23 +506,16 @@ const ContactSection = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ 
-                      scale: isSubmitting ? 1 : 1.02,
-                      boxShadow: isSubmitting ? "none" : "0 20px 40px rgba(59, 130, 246, 0.4)"
-                    }}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                    className={`w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 ${
-                      isSubmitting 
-                        ? 'bg-gray-600 cursor-not-allowed text-gray-400'
-                        : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600'
-                    }`}
+                    className={`btn-primary w-full ${isSubmitting ? 'opacity-60 cursor-not-allowed pointer-events-none' : ''}`}
                   >
                     {isSubmitting ? (
                       <>
                         <motion.div
                           animate={{ rotate: 360 }}
                           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                          className="w-5 h-5 border-2 border-gray-400 border-t-transparent rounded-full"
+                          className="w-5 h-5 border-2 border-white/40 border-t-transparent rounded-full"
                         />
                         <span>Sending...</span>
                       </>
