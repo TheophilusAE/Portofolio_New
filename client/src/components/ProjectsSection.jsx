@@ -1,112 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt, FaFigma, FaArrowRight, FaStar } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft, FaStar } from 'react-icons/fa';
 import SectionHeader from './SectionHeader';
 import ProjectModal from './ProjectModal';
-import MagneticElement from './MagneticElement';
-
-const QuickLinks = ({ project, visible }) => (
-  <motion.div
-    animate={{
-      opacity: visible ? 1 : 0,
-      y: visible ? 0 : 20
-    }}
-    transition={{ duration: 0.3 }}
-    className="absolute inset-0 z-20 flex items-center justify-center gap-4 bg-black/60"
-  >
-    {project.type === "dual-github" && (
-      <>
-        <a
-          href={project.github.frontend}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group/btn"
-          title="Frontend Repository"
-        >
-          <FaGithub size={20} />
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-black/80 px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-            Frontend
-          </span>
-        </a>
-        <a
-          href={project.github.backend}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="relative p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors group/btn"
-          title="Backend Repository"
-        >
-          <FaGithub size={20} />
-          <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-black/80 px-2 py-1 rounded opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">
-            Backend
-          </span>
-        </a>
-      </>
-    )}
-
-    {project.type === "single-github" && (
-      <a
-        href={project.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-      >
-        <FaGithub size={20} />
-      </a>
-    )}
-
-    {project.type === "figma" && (
-      <a
-        href={project.figma}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-      >
-        <FaFigma size={20} />
-      </a>
-    )}
-
-    {project.live && project.live !== "#" && (
-      <a
-        href={project.live}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-      >
-        <FaExternalLinkAlt size={20} />
-      </a>
-    )}
-  </motion.div>
-);
-
-const TechBadges = ({ technologies, className = '' }) => (
-  <div className={`flex flex-wrap gap-2 ${className}`}>
-    {technologies.map((tech) => (
-      <span
-        key={tech}
-        className="px-3 py-1 text-xs rounded-full bg-gray-700 text-gray-300"
-      >
-        {tech}
-      </span>
-    ))}
-  </div>
-);
 
 const ProjectsSection = () => {
-  const [hoveredKey, setHoveredKey] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [ref, inView] = useInView({
-    threshold: 0.2,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
-  const shouldReduceMotion = useReducedMotion();
-  const featuredRef = useRef(null);
-  const { scrollYProgress: featuredScroll } = useScroll({
-    target: featuredRef,
-    offset: ['start end', 'end start'],
-  });
-  const featuredImageY = useTransform(featuredScroll, [0, 1], shouldReduceMotion ? [0, 0] : [-30, 30]);
+  const scrollRef = useRef(null);
 
   const projects = [
     {
@@ -119,7 +26,7 @@ const ProjectsSection = () => {
         backend: "https://github.com/TheophilusAE/Web_Project_Go"
       },
       live: "#",
-      color: "from-blue-400 to-purple-500",
+      color: "from-amber-400 to-orange-500",
       type: "dual-github"
     },
     {
@@ -129,7 +36,7 @@ const ProjectsSection = () => {
       technologies: ["React Native", "Redux", "Firebase"],
       github: "https://github.com/TheophilusAE/Finapp_mobile",
       live: "#",
-      color: "from-emerald-400 to-cyan-500",
+      color: "from-orange-400 to-red-500",
       type: "single-github"
     },
     {
@@ -139,7 +46,7 @@ const ProjectsSection = () => {
       technologies: ["Figma", "UI/UX Design", "Prototype", "Mobile Design"],
       figma: "https://www.figma.com/design/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=3TpS66WfEnXMLdk7-1",
       live: "https://www.figma.com/proto/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=TdFWiuwRWBQ73Zud-1",
-      color: "from-pink-400 to-red-500",
+      color: "from-rose-400 to-red-500",
       type: "figma"
     },
     {
@@ -149,7 +56,7 @@ const ProjectsSection = () => {
       technologies: ["Figma", "UI/UX Design", "Website Redesign", "User Research"],
       figma: "https://www.figma.com/design/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=pt1PRJTI1z1wxOIA-1",
       live: "https://www.figma.com/proto/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=YvdihmaLjV3n59p5-1",
-      color: "from-red-400 to-pink-500",
+      color: "from-red-400 to-amber-500",
       type: "figma"
     },
     {
@@ -159,135 +66,132 @@ const ProjectsSection = () => {
       technologies: ["Vue.js", "Firebase", "Vuetify", "PWA"],
       github: "https://github.com/TheophilusAE/Web-GPDI-Persadamas-Banjarmasin",
       live: "https://gpdi-persadamas-banjarmasin.vercel.app/",
-      color: "from-purple-400 to-blue-500",
+      color: "from-yellow-400 to-orange-500",
       type: "single-github"
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+  const handleScroll = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setScrollProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
   };
 
-  const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
+  const scrollByAmount = (direction) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth * 0.85, behavior: 'smooth' });
   };
-
-  const [featured, ...otherProjects] = projects;
 
   return (
-    <section id="projects" className="py-20 bg-gray-950 text-white">
+    <section id="projects" className="py-24 md:py-32 bg-stone-950 text-white overflow-hidden">
       <motion.div
         ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="container mx-auto px-4"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            eyebrow="Portfolio"
-            title="Featured"
-            highlight="Projects"
-            subtitle="Innovative solutions combining education and technology"
-          />
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="max-w-6xl mx-auto flex flex-wrap items-end justify-between gap-6">
+            <SectionHeader
+              number="04"
+              eyebrow="Portfolio"
+              title="Featured"
+              highlight="Projects"
+              subtitle="Innovative solutions combining education and technology"
+              className="!mb-0 flex-1 min-w-[280px]"
+            />
 
-          {/* Featured project */}
-          <motion.div
-            ref={featuredRef}
-            variants={cardVariants}
-            onHoverStart={() => setHoveredKey(featured.title)}
-            onHoverEnd={() => setHoveredKey(null)}
-            className="group relative grid lg:grid-cols-2 rounded-2xl bg-gray-900/80 border border-gray-800/70 hover:border-gray-700/80 overflow-hidden transition-colors duration-300 mb-8"
-          >
-            <div className="relative h-72 lg:h-full overflow-hidden">
-              <motion.img
-                src={featured.image}
-                alt={featured.title}
-                style={{ y: featuredImageY }}
-                className="absolute inset-0 w-full h-[130%] -top-[15%] object-cover"
-              />
-              <div className={`absolute inset-0 bg-gradient-to-br ${featured.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
-
-              <span className="absolute top-4 left-4 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-400 text-gray-950 text-xs font-bold uppercase tracking-wide shadow-lg shadow-amber-500/30">
-                <FaStar size={12} />
-                Featured
-              </span>
-
-              <QuickLinks project={featured} visible={hoveredKey === featured.title} />
-            </div>
-
-            <div className="flex flex-col justify-center p-8 lg:p-10">
-              <h3 className="text-2xl lg:text-3xl font-bold mb-3 group-hover:text-blue-400 transition-colors">
-                {featured.title}
-              </h3>
-              <p className="text-gray-400 mb-6 line-clamp-4 lg:line-clamp-5">
-                {featured.description}
-              </p>
-              <TechBadges technologies={featured.technologies} className="mb-6" />
-              <MagneticElement strength={0.3} className="self-start">
-                <button
-                  onClick={() => setSelectedProject(featured)}
-                  className="btn-primary text-sm px-6 py-3"
-                >
-                  View Details
-                  <FaArrowRight size={12} />
-                </button>
-              </MagneticElement>
-            </div>
-          </motion.div>
-
-          {/* Remaining projects */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {otherProjects.map((project) => (
-              <motion.div
-                key={project.title}
-                variants={cardVariants}
-                onHoverStart={() => setHoveredKey(project.title)}
-                onHoverEnd={() => setHoveredKey(null)}
-                className="relative group flex flex-col h-full rounded-xl bg-gray-900/80 border border-gray-800/70 hover:border-gray-700/80 overflow-hidden transition-colors duration-300"
+            {/* Scroll controls */}
+            <div className="hidden sm:flex items-center gap-3 mb-16 md:mb-20">
+              <button
+                onClick={() => scrollByAmount(-1)}
+                aria-label="Previous project"
+                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-amber-500/60 hover:text-amber-400 transition-colors duration-300"
               >
-                {/* Project Image */}
-                <div className="relative h-64 overflow-hidden flex-shrink-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-300`} />
+                <FaArrowLeft size={14} />
+              </button>
+              <button
+                onClick={() => scrollByAmount(1)}
+                aria-label="Next project"
+                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-amber-500/60 hover:text-amber-400 transition-colors duration-300"
+              >
+                <FaArrowRight size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
 
-                  <QuickLinks project={project} visible={hoveredKey === project.title} />
-                </div>
+        {/* Horizontal scroll-snap showcase */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin-amber pb-10 px-6 md:px-10"
+        >
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              onClick={() => setSelectedProject(project)}
+              className="group relative flex-shrink-0 w-[88vw] sm:w-[68vw] lg:w-[46vw] snap-center cursor-pointer"
+            >
+              <div className="relative h-[58vh] sm:h-[62vh] overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-25 transition-opacity duration-500`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
 
-                {/* Project Info */}
-                <div className="flex flex-col flex-1 p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-400 transition-colors">
+                {index === 0 && (
+                  <span className="absolute top-6 left-6 inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-400 text-stone-950 text-xs font-bold uppercase tracking-wide">
+                    <FaStar size={11} />
+                    Featured
+                  </span>
+                )}
+
+                <span className="absolute top-6 right-6 font-serif italic text-5xl text-white/15 select-none">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+
+                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3 group-hover:text-amber-300 transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-gray-400 mb-4 text-sm line-clamp-3">
+                  <p className="text-stone-300 text-sm leading-relaxed line-clamp-2 max-w-md mb-4">
                     {project.description}
                   </p>
-                  <TechBadges technologies={project.technologies} className="mb-6" />
-                  <MagneticElement strength={0.25} className="mt-auto self-start">
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
-                    >
-                      View Details
-                      <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                  </MagneticElement>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 mb-5 text-xs text-stone-400 uppercase tracking-wider">
+                    {project.technologies.slice(0, 4).map((tech, i) => (
+                      <span key={tech}>
+                        {tech}{i < Math.min(project.technologies.length, 4) - 1 && <span className="text-stone-600 ml-3">/</span>}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold">
+                    View Details
+                    <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Trailing spacer so the last card can reach center */}
+          <div className="flex-shrink-0 w-px" aria-hidden="true" />
+        </div>
+
+        {/* Progress hairline */}
+        <div className="container mx-auto px-6 md:px-10">
+          <div className="max-w-6xl mx-auto h-px bg-stone-800 relative overflow-hidden">
+            <motion.div
+              className="absolute top-0 left-0 h-px bg-gradient-to-r from-amber-400 to-orange-500"
+              style={{ width: `${Math.max(scrollProgress, 4)}%` }}
+            />
           </div>
         </div>
       </motion.div>

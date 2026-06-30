@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const PARTICLE_COUNT = 24;
-const SHAPE_COUNT = 6;
+const PARTICLE_COUNT = 12;
+const SHAPE_COUNT = 3;
 
 const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   id: i,
@@ -14,10 +14,10 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   x: Math.random() * 200 - 100,
   y: Math.random() * 200 - 100,
   color: i % 3 === 0
-    ? 'rgba(59, 130, 246, 0.7)'
+    ? 'rgba(245, 158, 11, 0.7)'
     : i % 3 === 1
-    ? 'rgba(139, 92, 246, 0.7)'
-    : 'rgba(16, 185, 129, 0.7)',
+    ? 'rgba(234, 88, 12, 0.7)'
+    : 'rgba(225, 29, 72, 0.7)',
 }));
 
 const shapes = Array.from({ length: SHAPE_COUNT }, (_, i) => ({
@@ -31,15 +31,15 @@ const shapes = Array.from({ length: SHAPE_COUNT }, (_, i) => ({
 }));
 
 const shapeClass = (i) => {
-  if (i % 4 === 0) return 'border-blue-400 rounded-full';
-  if (i % 4 === 1) return 'border-purple-400 rounded-lg rotate-45';
-  if (i % 4 === 2) return 'border-green-400 rounded-sm';
-  return 'border-pink-400 rounded-full';
+  if (i % 4 === 0) return 'border-amber-400 rounded-full';
+  if (i % 4 === 1) return 'border-orange-400 rounded-lg rotate-45';
+  if (i % 4 === 2) return 'border-rose-400 rounded-sm';
+  return 'border-yellow-400 rounded-full';
 };
 
 const AnimatedBackground = ({ children }) => {
   return (
-    <div className="relative overflow-hidden bg-gray-950">
+    <div className="relative overflow-hidden bg-stone-950">
       {/* Slowly rotating color mesh, fixed to the viewport */}
       <div className="mesh-gradient" />
 
@@ -80,7 +80,7 @@ const AnimatedBackground = ({ children }) => {
       <motion.div
         className="absolute w-40 h-40 rounded-full blur-2xl"
         style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%)',
           left: '10%',
           top: '20%',
         }}
@@ -99,7 +99,7 @@ const AnimatedBackground = ({ children }) => {
       <motion.div
         className="absolute w-32 h-32 rounded-full blur-2xl"
         style={{
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(225, 29, 72, 0.22) 0%, transparent 70%)',
           right: '15%',
           top: '60%',
         }}
@@ -120,7 +120,7 @@ const AnimatedBackground = ({ children }) => {
         {shapes.map((shape, i) => (
           <motion.div
             key={shape.id}
-            className={`absolute border opacity-40 ${shapeClass(i)}`}
+            className={`absolute border opacity-20 ${shapeClass(i)}`}
             style={{
               width: `${shape.size}px`,
               height: `${shape.size}px`,

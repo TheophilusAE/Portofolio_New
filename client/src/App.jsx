@@ -33,7 +33,7 @@ const App = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="py-8 text-center text-gray-400 text-sm border-t border-gray-800/70 backdrop-blur-sm bg-gray-950/40"
+            className="py-8 text-center text-stone-400 text-sm border-t border-stone-800/70 backdrop-blur-sm bg-stone-950/40"
           >
             <div className="container mx-auto px-4">
               <motion.p
@@ -46,7 +46,7 @@ const App = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5 }}
-                className="text-xs text-gray-500"
+                className="text-xs text-stone-500"
               >
                 Built with React, Framer Motion & Tailwind CSS
               </motion.p>

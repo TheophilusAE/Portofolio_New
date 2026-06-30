@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGraduationCap, FaCertificate, FaTrophy } from 'react-icons/fa';
+import { FaCertificate } from 'react-icons/fa';
 import SectionHeader from './SectionHeader';
 
 const EducationSection = () => {
@@ -14,13 +14,13 @@ const EducationSection = () => {
     {
       degree: "Bachelor of Computer Science",
       school: "Bina Nusantara University",
-      period: "2023-2027",
+      period: "2023—2027",
       focus: "Specialized Full Stack Development and also Exploring Artificial Intelligence Development and Machine Learning",
     },
     {
       degree: "High School Diploma (Science Major)",
       school: "SMA Kristen Kanaan Banjarmasin",
-      period: "2020-2023",
+      period: "2020—2023",
       focus: "Science Major Focusing on Math and Science Subjects and also Learning Programming Basics",
     },
   ];
@@ -30,13 +30,13 @@ const EducationSection = () => {
       name: "Fundamental of Deep Learning",
       issuer: "Nvidia Deep Learning Institute",
       year: "2024",
-      icon: <FaCertificate className="text-green-400" size={24} />
+      icon: <FaCertificate className="text-amber-400" size={20} />
     }
   ];
 
   return (
-    <section id="education" className="py-20 bg-transparent text-white">
-      <div className="container mx-auto px-4">
+    <section id="education" className="py-24 md:py-32 bg-stone-950 text-white">
+      <div className="container mx-auto px-6 md:px-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 20 }}
@@ -45,67 +45,67 @@ const EducationSection = () => {
           className="max-w-6xl mx-auto"
         >
           <SectionHeader
+            number="02"
             eyebrow="My Background"
             title="Education &"
             highlight="Certifications"
           />
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Education Timeline */}
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            {/* Education Ledger */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
               transition={{ duration: 0.8 }}
             >
-              <h3 className="text-2xl font-semibold text-white mb-8">Education Timeline</h3>
-              <div className="space-y-8">
+              <span className="text-xs uppercase tracking-[0.3em] text-stone-500 mb-2 block">
+                Education Timeline
+              </span>
+              <div className="divide-y divide-stone-800 border-t border-stone-800">
                 {education.map((edu, index) => (
                   <motion.div
                     key={index}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={inView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.5, delay: index * 0.2 }}
-                    className="relative pl-8 border-l-2 border-gray-700"
+                    className="group py-7"
                   >
-                    <div className="absolute -left-2.5 top-0">
-                      <div className="bg-blue-500 rounded-full w-5 h-5"></div>
-                    </div>
-                    <div className="bg-gray-900/80 p-6 rounded-xl hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-                      <h4 className="text-xl font-semibold text-white mb-2">{edu.degree}</h4>
-                      <p className="text-gray-300 mb-1">{edu.school}</p>
-                      <p className="text-blue-400 text-sm mb-3">{edu.period}</p>
-                      <p className="text-gray-300">{edu.focus}</p>
-                    </div>
+                    <p className="font-serif italic text-amber-400 text-sm mb-3">{edu.period}</p>
+                    <h4 className="font-serif text-xl sm:text-2xl text-white mb-2 group-hover:text-amber-300 transition-colors duration-300">
+                      {edu.degree}
+                    </h4>
+                    <p className="text-stone-300 mb-3">{edu.school}</p>
+                    <p className="text-stone-400 text-sm leading-relaxed">{edu.focus}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Certifications */}
+            {/* Certifications Ledger */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
               transition={{ duration: 0.8 }}
             >
-              <h3 className="text-2xl font-semibold text-white mb-8">Professional Certifications</h3>
-              <div className="space-y-6">
+              <span className="text-xs uppercase tracking-[0.3em] text-stone-500 mb-2 block">
+                Professional Certifications
+              </span>
+              <div className="divide-y divide-stone-800 border-t border-stone-800">
                 {certifications.map((cert, index) => (
                   <motion.div
                     key={index}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={inView ? { y: 0, opacity: 1 } : { y: 20, opacity: 0 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-gray-900/80 p-6 rounded-xl hover:bg-gray-800/80 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10"
+                    className="group flex items-start gap-4 py-7"
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="p-3 bg-black/60 rounded-lg">
-                        {cert.icon}
-                      </div>
-                      <div>
-                        <h4 className="text-xl font-semibold text-white mb-1">{cert.name}</h4>
-                        <p className="text-gray-300 text-sm">{cert.issuer}</p>
-                        <p className="text-blue-400 text-sm">{cert.year}</p>
-                      </div>
+                    <span className="pt-1">{cert.icon}</span>
+                    <div>
+                      <h4 className="font-serif text-xl text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                        {cert.name}
+                      </h4>
+                      <p className="text-stone-400 text-sm">{cert.issuer}</p>
+                      <p className="text-amber-400 text-sm font-serif italic">{cert.year}</p>
                     </div>
                   </motion.div>
                 ))}

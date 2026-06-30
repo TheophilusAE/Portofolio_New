@@ -1,34 +1,39 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const SectionHeader = ({ eyebrow, title, highlight, subtitle, className = '' }) => {
+const SectionHeader = ({ number, eyebrow, title, highlight, subtitle, className = '' }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6 }}
-      className={`text-center mb-16 ${className}`}
+      className={`mb-16 md:mb-20 ${className}`}
     >
-      {eyebrow && (
-        <span className="inline-block text-sm font-semibold tracking-[0.2em] uppercase text-blue-400/80 mb-3">
-          {eyebrow}
-        </span>
-      )}
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+      <div className="flex items-baseline gap-4 mb-4">
+        {number && (
+          <span className="font-serif italic text-base text-amber-400/80">{number}</span>
+        )}
+        {eyebrow && (
+          <span className="text-xs font-semibold tracking-[0.3em] uppercase text-stone-400">
+            {eyebrow}
+          </span>
+        )}
+      </div>
+      <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium text-white leading-tight">
         {title && <>{title}{' '}</>}
         {highlight && (
-          <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
+          <span className="italic bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-transparent bg-clip-text">
             {highlight}
           </span>
         )}
       </h2>
       {subtitle && (
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="text-stone-400 text-lg md:text-xl max-w-xl mt-6">
           {subtitle}
         </p>
       )}
-      <div className="w-24 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 mx-auto mt-6 rounded-full" />
+      <div className="w-full h-px bg-stone-800 mt-10" />
     </motion.div>
   );
 };

@@ -38,7 +38,7 @@ const ProjectModal = ({ project, onClose }) => {
             role="dialog"
             aria-modal="true"
             aria-label={project.title}
-            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-gray-900 border border-gray-800/70 shadow-2xl"
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-stone-900 border border-stone-800/70 shadow-2xl"
           >
             <button
               onClick={onClose}
@@ -58,11 +58,11 @@ const ProjectModal = ({ project, onClose }) => {
             </div>
 
             <div className="p-6 sm:p-8">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-4">
                 {project.title}
               </h3>
 
-              <p className="text-gray-300 leading-relaxed mb-6 whitespace-pre-line">
+              <p className="text-stone-300 leading-relaxed mb-6 whitespace-pre-line">
                 {project.description}
               </p>
 
@@ -70,7 +70,7 @@ const ProjectModal = ({ project, onClose }) => {
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 text-xs rounded-full bg-gray-800 text-gray-300"
+                    className="px-3 py-1 text-xs rounded-full bg-stone-800 text-stone-300"
                   >
                     {tech}
                   </span>

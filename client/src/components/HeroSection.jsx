@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { FaGithub, FaLinkedinIn, FaInstagram, FaChevronDown, FaCommentDots } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaInstagram, FaCommentDots } from 'react-icons/fa';
 import DownloadCVButton from './DownloadCVButton';
 import MagneticElement from './MagneticElement';
 
@@ -28,23 +28,23 @@ const HeroSection = () => {
     target: heroRef,
     offset: ['start start', 'end start'],
   });
-  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 120]);
+  const imageY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? [0, 0] : [0, 100]);
 
   const socialLinks = [
-    { 
-      icon: <FaGithub size={20} />, 
+    {
+      icon: <FaGithub size={18} />,
       url: "https://github.com/TheophilusAE",
-      color: "hover:text-gray-300"
+      color: "hover:text-stone-200"
     },
-    { 
-      icon: <FaLinkedinIn size={20} />, 
+    {
+      icon: <FaLinkedinIn size={18} />,
       url: "https://www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      color: "hover:text-blue-400"
+      color: "hover:text-amber-400"
     },
-    { 
-      icon: <FaInstagram size={20} />, 
+    {
+      icon: <FaInstagram size={18} />,
       url: "https://www.instagram.com/thoouuuuuu?igsh=ajlnNml4M3c0MjAx",
-      color: "hover:text-pink-400"
+      color: "hover:text-rose-400"
     }
   ];
 
@@ -62,137 +62,62 @@ const HeroSection = () => {
     }
   };
 
-  // Single download replaced by dropdown component
-
   return (
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950 group/hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-stone-950 group/hero"
     >
       {/* Mouse-follow spotlight */}
       <div className="cursor-glow absolute inset-0 opacity-0 group-hover/hero:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* Enhanced background effects */}
-      <div className="absolute inset-0">
-        {/* Large floating orbs */}
-        <motion.div
-          animate={{
-            rotate: 360,
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            rotate: -360,
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl"
-        />
-
-        {/* Floating geometric shapes */}
-        {[...Array(6)].map((_, i) => (
+      <div className="container mx-auto px-6 md:px-10 relative z-10 pt-24 pb-16 lg:py-0">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-6 items-center">
+          {/* Text column */}
           <motion.div
-            key={i}
-            className="absolute w-4 h-4 border border-blue-400/20"
-            style={{
-              left: `${20 + i * 15}%`,
-              top: `${20 + i * 10}%`,
-            }}
-            animate={{
-              rotate: [0, 360],
-              y: [0, -20, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: 8 + i * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 1.5,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="text-center lg:text-left"
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="lg:col-span-7 relative z-20"
           >
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-stone-400 text-xs sm:text-sm uppercase tracking-[0.35em] mb-6"
+            >
+              Welcome to my world
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="font-serif text-6xl sm:text-7xl md:text-8xl font-medium text-white leading-[0.95] mb-2"
+            >
+              Hi, I'm
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.45, duration: 1 }}
+              className="font-serif italic text-6xl sm:text-7xl md:text-8xl font-medium leading-[0.95] mb-8 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-transparent bg-clip-text"
+            >
+              Theophilus
+            </motion.h1>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8 }}
-              className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 text-amber-300 text-xs sm:text-sm font-medium"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
-              </span>
-              Available for Opportunities
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="text-gray-400 text-lg mb-4 font-light tracking-wide"
-            >
-              Welcome to my world
-            </motion.h2>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1 }}
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
-            >
-              Hi, I'm{" "}
-              <motion.span 
-                className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 text-transparent bg-clip-text"
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-                style={{
-                  backgroundSize: "200% 200%",
-                }}
-              >
-                Theophilus
-              </motion.span>
-            </motion.h1>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 h-20"
+              className="text-xl md:text-2xl text-stone-300 mb-6 font-light h-10"
             >
               I'm a{" "}
               <TypeAnimation
                 sequence={[
                   'Full Stack Developer',
                   2000,
-                  'UI/UX Designer', 
+                  'UI/UX Designer',
                   2000,
                   'Problem Solver',
                   2000,
@@ -208,26 +133,26 @@ const HeroSection = () => {
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
-                className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
+                className="text-amber-400 font-medium"
                 style={{ display: 'inline-block' }}
               />
             </motion.div>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-              className="text-gray-400 mb-8 text-lg lg:text-xl leading-relaxed max-w-2xl"
+              transition={{ delay: 0.75, duration: 0.8 }}
+              className="text-stone-400 mb-10 text-base lg:text-lg leading-relaxed max-w-lg"
             >
               Empowering minds through technology and education to create lasting academic impact.
             </motion.p>
 
-            {/* Enhanced Social Links */}
-            <motion.div 
+            {/* Social links, minimal */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.8 }}
-              className="flex justify-center lg:justify-start space-x-6 mb-8"
+              transition={{ delay: 0.9, duration: 0.8 }}
+              className="flex items-center gap-6 mb-10"
             >
               {socialLinks.map((social, index) => (
                 <motion.a
@@ -235,33 +160,24 @@ const HeroSection = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ 
-                    scale: 1.2, 
-                    rotate: 10,
-                    y: -5 
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`group relative w-14 h-14 rounded-full bg-gradient-to-r from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300 shadow-lg hover:shadow-xl`}
+                  whileHover={{ y: -3 }}
+                  className={`text-stone-500 ${social.color} transition-colors duration-300`}
                 >
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    {social.icon}
-                  </motion.div>
+                  {social.icon}
                 </motion.a>
               ))}
+              <span className="w-10 h-px bg-stone-700" />
+              <span className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                Available for Opportunities
+              </span>
             </motion.div>
 
-            {/* Enhanced CTA Buttons */}
-            <motion.div 
+            {/* CTA Buttons */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
-              className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+              transition={{ delay: 1.05, duration: 0.8 }}
+              className="flex flex-wrap gap-4"
             >
               <DownloadCVButton
                 creative={{
@@ -275,7 +191,7 @@ const HeroSection = () => {
                   filename: 'Theophilus Alexander Elvan-resume.pdf',
                 }}
               />
-              
+
               <MagneticElement strength={0.3}>
                 <motion.button
                   onClick={scrollToContact}
@@ -295,95 +211,57 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Hero Image */}
+          {/* Image column — bleeds to the viewport edge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: 100 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative"
+            className="lg:col-span-5 relative h-[55vh] sm:h-[65vh] lg:h-[80vh] lg:-mr-10 xl:-mr-16"
           >
-            <motion.div style={{ y: imageY }} className="relative w-full h-[500px] lg:h-[600px]">
-              {/* Glowing background effect */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl blur-xl"
-              />
-              
-              {/* Image container */}
-              <motion.div
-                whileHover={{ 
-                  scale: 1.02,
-                  rotateY: 5,
-                  rotateX: 5,
-                }}
-                transition={{ duration: 0.6 }}
-                className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-purple-500/10 z-10"></div>
+            <motion.div style={{ y: imageY }} className="relative w-full h-full">
+              <div className="relative w-full h-full lg:rounded-l-[3rem] overflow-hidden shadow-2xl">
                 <motion.img
                   src="/Theophilus Alexander Elvan 4 (2).jpg"
                   alt="Profile"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  whileHover={{ filter: "brightness(1.1)" }}
+                  className="w-full h-full object-cover"
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.5, ease: "easeOut" }}
                 />
-                
-                {/* Floating elements around image */}
-                <motion.div
-                  animate={{
-                    y: [0, -20, 0],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-80"
-                />
-                
-                <motion.div
-                  animate={{
-                    y: [0, 15, 0],
-                    rotate: [0, -180, -360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-80"
-                />
-              </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-stone-950/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-stone-950/60" />
+
+                {/* Editorial caption */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-amber-300/90 mb-1">
+                    Software &amp; AI Developer
+                  </p>
+                  <p className="text-stone-300 text-xs sm:text-sm">Malang, Indonesia</p>
+                </div>
+              </div>
+
+              {/* Accent divider line */}
+              <div className="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 w-px h-32 bg-gradient-to-b from-transparent via-amber-500/60 to-transparent" />
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.button
-            onClick={scrollToAbout}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center text-gray-400 hover:text-white transition-colors duration-300"
-          >
-            <span className="text-sm mb-2 tracking-wide">Scroll Down</span>
-            <FaChevronDown size={20} />
-          </motion.button>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.button
+        onClick={scrollToAbout}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="hidden sm:flex absolute bottom-10 left-6 md:left-10 items-center gap-3 text-stone-500 hover:text-stone-300 transition-colors duration-300 z-20"
+      >
+        <span className="text-xs uppercase tracking-[0.3em]">Scroll</span>
+        <motion.span
+          animate={{ scaleY: [1, 1.4, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="block w-px h-10 bg-current origin-top"
+        />
+      </motion.button>
     </section>
   );
 };

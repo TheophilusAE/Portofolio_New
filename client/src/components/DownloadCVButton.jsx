@@ -46,15 +46,15 @@ const DownloadCVButton = ({
     <a
       href={path}
       download={filename}
-      className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-800/70 text-gray-200 transition-colors"
+      className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-stone-800/70 text-stone-200 transition-colors"
       onClick={() => setOpen(false)}
     >
-      <span className="w-8 h-8 rounded-md bg-gray-900 flex items-center justify-center text-blue-300">
+      <span className="w-8 h-8 rounded-md bg-stone-900 flex items-center justify-center text-amber-300">
         <FaFileAlt size={16} />
       </span>
       <div className="flex flex-col">
         <span className="font-medium">{label}</span>
-        <span className="text-xs text-gray-400">PDF • optimized for {label.includes('ATS') ? 'parsing' : 'visual impact'}</span>
+        <span className="text-xs text-stone-400">PDF • optimized for {label.includes('ATS') ? 'parsing' : 'visual impact'}</span>
       </div>
     </a>
   );
@@ -84,11 +84,11 @@ const DownloadCVButton = ({
             exit="exit"
             variants={variants}
             transition={{ duration: 0.15, ease: 'easeOut' }}
-            className="absolute left-0 mt-2 w-64 rounded-xl border border-gray-800/70 bg-gray-900/95 backdrop-blur-md shadow-2xl overflow-hidden z-20"
+            className="absolute left-0 mt-2 w-64 rounded-xl border border-stone-800/70 bg-stone-900/95 backdrop-blur-md shadow-2xl overflow-hidden z-20"
             role="menu"
           >
-            <div className="px-4 py-3 border-b border-gray-800/70">
-              <p className="text-sm text-gray-400">Choose your preferred format</p>
+            <div className="px-4 py-3 border-b border-stone-800/70">
+              <p className="text-sm text-stone-400">Choose your preferred format</p>
             </div>
             <div className="py-1">
               <Item label={creative.label} path={creative.path} filename={creative.filename} />
