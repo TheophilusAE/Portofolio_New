@@ -55,7 +55,7 @@ const Navbar = () => {
     <>
       {/* Scroll progress hairline */}
       <motion.div
-        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-amber-400 to-orange-500 z-50 origin-left"
+        className="fixed top-0 left-0 h-[2px] bg-gradient-to-r from-blue-400 to-cyan-400 z-50 origin-left"
         style={{ width: `${Math.min(Math.max(scrollProgress, 0), 100)}%` }}
       />
 
@@ -83,7 +83,7 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
                 className="font-serif text-xl text-white tracking-wide"
               >
-                T<span className="text-amber-400">.</span>A<span className="text-amber-400">.</span>E
+                T<span className="text-blue-400">.</span>A<span className="text-blue-400">.</span>E
               </motion.span>
             </Link>
 
@@ -106,13 +106,13 @@ const Navbar = () => {
                       <motion.span
                         animate={{
                           width: isActive ? 24 : 6,
-                          backgroundColor: isActive ? '#fbbf24' : '#57534e',
+                          backgroundColor: isActive ? '#60a5fa' : '#57534e',
                         }}
                         className="block h-1.5 rounded-full group-hover:bg-stone-400 transition-colors"
                       />
                       <span
                         className={`text-xs uppercase tracking-[0.2em] transition-all duration-300 ${
-                          isActive ? 'text-amber-300 opacity-100' : 'text-stone-400 opacity-60 group-hover:opacity-100'
+                          isActive ? 'text-blue-300 opacity-100' : 'text-stone-400 opacity-60 group-hover:opacity-100'
                         }`}
                       >
                         {link.title}
@@ -197,12 +197,12 @@ const Navbar = () => {
                       className="group block"
                     >
                       <div className="flex items-baseline gap-5 py-4 border-b border-stone-800">
-                        <span className="font-serif text-sm text-amber-400">
+                        <span className="font-serif text-sm text-blue-400">
                           0{index + 1}
                         </span>
                         <span
                           className={`font-serif text-4xl sm:text-5xl transition-colors duration-300 ${
-                            isActive ? 'text-amber-300 italic' : 'text-white group-hover:text-amber-300'
+                            isActive ? 'text-blue-300 italic' : 'text-white group-hover:text-blue-300'
                           }`}
                         >
                           {link.title}

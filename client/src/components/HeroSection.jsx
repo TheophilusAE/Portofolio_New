@@ -39,12 +39,12 @@ const HeroSection = () => {
     {
       icon: <FaLinkedinIn size={18} />,
       url: "https://www.linkedin.com/in/theophilus-alexander-elvan-94a6a8291?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-      color: "hover:text-amber-400"
+      color: "hover:text-cyan-400"
     },
     {
       icon: <FaInstagram size={18} />,
       url: "https://www.instagram.com/thoouuuuuu?igsh=ajlnNml4M3c0MjAx",
-      color: "hover:text-rose-400"
+      color: "hover:text-blue-300"
     }
   ];
 
@@ -101,7 +101,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 1 }}
-              className="font-serif italic text-6xl sm:text-7xl md:text-8xl font-medium leading-[0.95] mb-8 bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-transparent bg-clip-text"
+              className="font-serif italic text-6xl sm:text-7xl md:text-8xl font-medium leading-[0.95] mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 text-transparent bg-clip-text"
             >
               Theophilus
             </motion.h1>
@@ -133,7 +133,7 @@ const HeroSection = () => {
                 wrapper="span"
                 speed={50}
                 repeat={Infinity}
-                className="text-amber-400 font-medium"
+                className="text-cyan-400 font-medium"
                 style={{ display: 'inline-block' }}
               />
             </motion.div>
@@ -233,7 +233,7 @@ const HeroSection = () => {
 
                 {/* Editorial caption */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-amber-300/90 mb-1">
+                  <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-cyan-300/90 mb-1">
                     Software &amp; AI Developer
                   </p>
                   <p className="text-stone-300 text-xs sm:text-sm">Malang, Indonesia</p>
@@ -241,7 +241,7 @@ const HeroSection = () => {
               </div>
 
               {/* Accent divider line */}
-              <div className="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 w-px h-32 bg-gradient-to-b from-transparent via-amber-500/60 to-transparent" />
+              <div className="hidden lg:block absolute -left-6 top-1/2 -translate-y-1/2 w-px h-32 bg-gradient-to-b from-transparent via-blue-400/60 to-transparent" />
             </motion.div>
           </motion.div>
         </div>

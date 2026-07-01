@@ -20,32 +20,32 @@ const AboutSection = () => {
 
   const skills = [
     {
-      icon: <FaCode className="text-amber-500" size={20} />,
+      icon: <FaCode className="text-blue-400" size={20} />,
       title: "Academic Leadership",
       description: "Mentoring students, leading academic initiatives, and developing educational content that enhances learning outcomes."
     },
     {
-      icon: <FaLaptopCode className="text-orange-500" size={20} />,
+      icon: <FaLaptopCode className="text-cyan-500" size={20} />,
       title: "Data Analysis & Research",
       description: "Processing research data, creating analytical presentations, and supporting academic research projects with technical expertise."
     },
     {
-      icon: <FaPuzzlePiece className="text-rose-500" size={20} />,
+      icon: <FaPuzzlePiece className="text-blue-300" size={20} />,
       title: "Student Mentorship",
       description: "Guiding students through complex academic challenges, translating difficult concepts into accessible learning strategies."
     },
     {
-      icon: <FaRocket className="text-red-500" size={20} />,
+      icon: <FaRocket className="text-blue-400" size={20} />,
       title: "Educational Innovation",
       description: "Developing innovative teaching methods and leveraging technology to improve educational experiences and outcomes."
     },
     {
-      icon: <FaBrain className="text-yellow-500" size={20} />,
+      icon: <FaBrain className="text-cyan-400" size={20} />,
       title: "AI & Technology",
       description: "Deep interest in artificial intelligence and emerging technologies, exploring their applications in education and development."
     },
     {
-      icon: <FaUsers className="text-amber-600" size={20} />,
+      icon: <FaUsers className="text-blue-500" size={20} />,
       title: "Team Collaboration",
       description: "Strong interpersonal skills with experience in cross-functional teams, fostering collaborative environments."
     }
@@ -107,10 +107,10 @@ const AboutSection = () => {
                 className="text-stone-300 text-lg leading-relaxed"
               >
                 I am an ambitious undergraduate in{" "}
-                <span className="text-amber-400 font-semibold">Digital Creative Technology (Computer Science)</span>,
+                <span className="text-blue-400 font-semibold">Digital Creative Technology (Computer Science)</span>,
                 dedicated to the full-stack realization of innovative projects.
                 My core interest lies in{" "}
-                <span className="text-orange-400 font-semibold">Artificial Intelligence (AI)</span>,
+                <span className="text-cyan-400 font-semibold">Artificial Intelligence (AI)</span>,
                 where I am actively deepening my expertise to build and deploy cutting-edge solutions.
               </motion.p>
 
@@ -142,7 +142,7 @@ const AboutSection = () => {
                       </span>
                       <span className="flex-shrink-0 pt-0.5">{skill.icon}</span>
                       <div>
-                        <h4 className="text-white font-semibold mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                        <h4 className="text-white font-semibold mb-1 group-hover:text-blue-300 transition-colors duration-300">
                           {skill.title}
                         </h4>
                         <p className="text-stone-400 text-sm leading-relaxed">
@@ -172,7 +172,7 @@ const AboutSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
                 </div>
                 <div className="absolute -bottom-6 -left-6 hidden sm:block bg-stone-950 border border-stone-800 px-5 py-4">
-                  <p className="font-serif italic text-2xl text-amber-400">2027</p>
+                  <p className="font-serif italic text-2xl text-blue-400">2027</p>
                   <p className="text-stone-400 text-xs uppercase tracking-widest">Expected Graduation</p>
                 </div>
               </motion.div>

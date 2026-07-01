@@ -26,7 +26,7 @@ const ProjectsSection = () => {
         backend: "https://github.com/TheophilusAE/Web_Project_Go"
       },
       live: "#",
-      color: "from-amber-400 to-orange-500",
+      color: "from-blue-400 to-cyan-500",
       type: "dual-github"
     },
     {
@@ -36,7 +36,7 @@ const ProjectsSection = () => {
       technologies: ["React Native", "Redux", "Firebase"],
       github: "https://github.com/TheophilusAE/Finapp_mobile",
       live: "#",
-      color: "from-orange-400 to-red-500",
+      color: "from-cyan-400 to-blue-500",
       type: "single-github"
     },
     {
@@ -46,7 +46,7 @@ const ProjectsSection = () => {
       technologies: ["Figma", "UI/UX Design", "Prototype", "Mobile Design"],
       figma: "https://www.figma.com/design/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=3TpS66WfEnXMLdk7-1",
       live: "https://www.figma.com/proto/zaCEkiX6cYABGcosLO5LHL/BeFit?node-id=0-1&t=TdFWiuwRWBQ73Zud-1",
-      color: "from-rose-400 to-red-500",
+      color: "from-blue-300 to-indigo-500",
       type: "figma"
     },
     {
@@ -56,7 +56,7 @@ const ProjectsSection = () => {
       technologies: ["Figma", "UI/UX Design", "Website Redesign", "User Research"],
       figma: "https://www.figma.com/design/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=pt1PRJTI1z1wxOIA-1",
       live: "https://www.figma.com/proto/hGiK0r5UinEhGue3W6Eyjc/SIdonDAr?node-id=0-1&t=YvdihmaLjV3n59p5-1",
-      color: "from-red-400 to-amber-500",
+      color: "from-indigo-400 to-blue-500",
       type: "figma"
     },
     {
@@ -66,7 +66,7 @@ const ProjectsSection = () => {
       technologies: ["Vue.js", "Firebase", "Vuetify", "PWA"],
       github: "https://github.com/TheophilusAE/Web-GPDI-Persadamas-Banjarmasin",
       live: "https://gpdi-persadamas-banjarmasin.vercel.app/",
-      color: "from-yellow-400 to-orange-500",
+      color: "from-cyan-300 to-blue-400",
       type: "single-github"
     },
   ];
@@ -108,14 +108,14 @@ const ProjectsSection = () => {
               <button
                 onClick={() => scrollByAmount(-1)}
                 aria-label="Previous project"
-                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-amber-500/60 hover:text-amber-400 transition-colors duration-300"
+                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-blue-400/60 hover:text-cyan-400 transition-colors duration-300"
               >
                 <FaArrowLeft size={14} />
               </button>
               <button
                 onClick={() => scrollByAmount(1)}
                 aria-label="Next project"
-                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-amber-500/60 hover:text-amber-400 transition-colors duration-300"
+                className="w-12 h-12 rounded-full border border-stone-700 flex items-center justify-center text-stone-400 hover:border-blue-400/60 hover:text-cyan-400 transition-colors duration-300"
               >
                 <FaArrowRight size={14} />
               </button>
@@ -148,7 +148,7 @@ const ProjectsSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
 
                 {index === 0 && (
-                  <span className="absolute top-6 left-6 inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-400 text-stone-950 text-xs font-bold uppercase tracking-wide">
+                  <span className="absolute top-6 left-6 inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-400 text-stone-950 text-xs font-bold uppercase tracking-wide">
                     <FaStar size={11} />
                     Featured
                   </span>
@@ -159,7 +159,7 @@ const ProjectsSection = () => {
                 </span>
 
                 <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                  <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3 group-hover:text-amber-300 transition-colors duration-300">
+                  <h3 className="font-serif text-2xl sm:text-3xl text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">
                     {project.title}
                   </h3>
                   <p className="text-stone-300 text-sm leading-relaxed line-clamp-2 max-w-md mb-4">
@@ -172,7 +172,7 @@ const ProjectsSection = () => {
                       </span>
                     ))}
                   </div>
-                  <span className="inline-flex items-center gap-2 text-amber-400 text-sm font-semibold">
+                  <span className="inline-flex items-center gap-2 text-cyan-400 text-sm font-semibold">
                     View Details
                     <FaArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                   </span>
@@ -189,7 +189,7 @@ const ProjectsSection = () => {
         <div className="container mx-auto px-6 md:px-10">
           <div className="max-w-6xl mx-auto h-px bg-stone-800 relative overflow-hidden">
             <motion.div
-              className="absolute top-0 left-0 h-px bg-gradient-to-r from-amber-400 to-orange-500"
+              className="absolute top-0 left-0 h-px bg-gradient-to-r from-blue-400 to-cyan-500"
               style={{ width: `${Math.max(scrollProgress, 4)}%` }}
             />
           </div>

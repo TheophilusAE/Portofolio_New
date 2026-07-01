@@ -149,7 +149,7 @@ const ContactSection = () => {
 
   const fieldClass = (hasError) =>
     `w-full bg-transparent border-0 border-b py-3 text-white placeholder-stone-600 focus:outline-none transition-colors duration-300 ${
-      hasError ? 'border-red-500' : 'border-stone-700 focus:border-amber-500'
+      hasError ? 'border-red-500' : 'border-stone-700 focus:border-blue-400'
     }`;
 
   return (
@@ -180,7 +180,7 @@ const ContactSection = () => {
                 className="font-serif italic text-3xl text-white mb-6"
               >
                 Ready to contribute to your{" "}
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-transparent bg-clip-text">
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
                   team
                 </span>
               </motion.h3>
@@ -204,7 +204,7 @@ const ContactSection = () => {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ x: 6 }}
-                    className="flex items-center gap-4 py-4 text-amber-400"
+                    className="flex items-center gap-4 py-4 text-blue-400"
                   >
                     {info.icon}
                     <div>
@@ -228,7 +228,7 @@ const ContactSection = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ y: -3 }}
-                      className="text-stone-400 hover:text-amber-400 transition-colors duration-300"
+                      className="text-stone-400 hover:text-blue-400 transition-colors duration-300"
                       aria-label={social.label}
                     >
                       {social.icon}
@@ -454,7 +454,7 @@ const ContactSection = () => {
           <motion.button
             whileHover={{ scale: 1.1, borderColor: 'rgb(251, 191, 36)' }}
             whileTap={{ scale: 0.9 }}
-            className="w-14 h-14 rounded-full border border-stone-700 bg-stone-950/80 backdrop-blur-sm text-stone-300 hover:text-amber-400 transition-colors duration-300 flex items-center justify-center"
+            className="w-14 h-14 rounded-full border border-stone-700 bg-stone-950/80 backdrop-blur-sm text-stone-300 hover:text-blue-400 transition-colors duration-300 flex items-center justify-center"
             aria-label="Scroll to contact form"
           >
             <FaEnvelope size={18} />

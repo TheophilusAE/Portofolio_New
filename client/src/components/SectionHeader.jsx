@@ -12,7 +12,7 @@ const SectionHeader = ({ number, eyebrow, title, highlight, subtitle, className 
     >
       <div className="flex items-baseline gap-4 mb-4">
         {number && (
-          <span className="font-serif italic text-base text-amber-400/80">{number}</span>
+          <span className="font-serif italic text-base text-blue-400/80">{number}</span>
         )}
         {eyebrow && (
           <span className="text-xs font-semibold tracking-[0.3em] uppercase text-stone-400">
@@ -23,7 +23,7 @@ const SectionHeader = ({ number, eyebrow, title, highlight, subtitle, className 
       <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-medium text-white leading-tight">
         {title && <>{title}{' '}</>}
         {highlight && (
-          <span className="italic bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-transparent bg-clip-text">
+          <span className="italic bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-300 text-transparent bg-clip-text">
             {highlight}
           </span>
         )}

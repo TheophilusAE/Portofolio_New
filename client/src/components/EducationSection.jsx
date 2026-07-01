@@ -30,7 +30,7 @@ const EducationSection = () => {
       name: "Fundamental of Deep Learning",
       issuer: "Nvidia Deep Learning Institute",
       year: "2024",
-      icon: <FaCertificate className="text-amber-400" size={20} />
+      icon: <FaCertificate className="text-blue-400" size={20} />
     }
   ];
 
@@ -70,8 +70,8 @@ const EducationSection = () => {
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                     className="group py-7"
                   >
-                    <p className="font-serif italic text-amber-400 text-sm mb-3">{edu.period}</p>
-                    <h4 className="font-serif text-xl sm:text-2xl text-white mb-2 group-hover:text-amber-300 transition-colors duration-300">
+                    <p className="font-serif italic text-blue-400 text-sm mb-3">{edu.period}</p>
+                    <h4 className="font-serif text-xl sm:text-2xl text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
                       {edu.degree}
                     </h4>
                     <p className="text-stone-300 mb-3">{edu.school}</p>
@@ -101,11 +101,11 @@ const EducationSection = () => {
                   >
                     <span className="pt-1">{cert.icon}</span>
                     <div>
-                      <h4 className="font-serif text-xl text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                      <h4 className="font-serif text-xl text-white mb-1 group-hover:text-blue-300 transition-colors duration-300">
                         {cert.name}
                       </h4>
                       <p className="text-stone-400 text-sm">{cert.issuer}</p>
-                      <p className="text-amber-400 text-sm font-serif italic">{cert.year}</p>
+                      <p className="text-blue-400 text-sm font-serif italic">{cert.year}</p>
                     </div>
                   </motion.div>
                 ))}

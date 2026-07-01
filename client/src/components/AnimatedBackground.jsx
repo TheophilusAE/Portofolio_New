@@ -14,10 +14,10 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   x: Math.random() * 200 - 100,
   y: Math.random() * 200 - 100,
   color: i % 3 === 0
-    ? 'rgba(245, 158, 11, 0.7)'
+    ? 'rgba(59, 130, 246, 0.7)'
     : i % 3 === 1
-    ? 'rgba(234, 88, 12, 0.7)'
-    : 'rgba(225, 29, 72, 0.7)',
+    ? 'rgba(6, 182, 212, 0.7)'
+    : 'rgba(99, 102, 241, 0.7)',
 }));
 
 const shapes = Array.from({ length: SHAPE_COUNT }, (_, i) => ({
@@ -31,10 +31,10 @@ const shapes = Array.from({ length: SHAPE_COUNT }, (_, i) => ({
 }));
 
 const shapeClass = (i) => {
-  if (i % 4 === 0) return 'border-amber-400 rounded-full';
-  if (i % 4 === 1) return 'border-orange-400 rounded-lg rotate-45';
-  if (i % 4 === 2) return 'border-rose-400 rounded-sm';
-  return 'border-yellow-400 rounded-full';
+  if (i % 4 === 0) return 'border-blue-400 rounded-full';
+  if (i % 4 === 1) return 'border-cyan-400 rounded-lg rotate-45';
+  if (i % 4 === 2) return 'border-blue-300 rounded-sm';
+  return 'border-cyan-300 rounded-full';
 };
 
 const AnimatedBackground = ({ children }) => {
@@ -80,7 +80,7 @@ const AnimatedBackground = ({ children }) => {
       <motion.div
         className="absolute w-40 h-40 rounded-full blur-2xl"
         style={{
-          background: 'radial-gradient(circle, rgba(245, 158, 11, 0.22) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.22) 0%, transparent 70%)',
           left: '10%',
           top: '20%',
         }}
@@ -99,7 +99,7 @@ const AnimatedBackground = ({ children }) => {
       <motion.div
         className="absolute w-32 h-32 rounded-full blur-2xl"
         style={{
-          background: 'radial-gradient(circle, rgba(225, 29, 72, 0.22) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.22) 0%, transparent 70%)',
           right: '15%',
           top: '60%',
         }}

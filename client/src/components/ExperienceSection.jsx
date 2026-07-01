@@ -24,7 +24,7 @@ const ExperienceSection = () => {
         "Collaborated on 5+ research projects, contributing to published academic documentation"
       ],
       skills: ["Data Analysis", "Research", "PowerPoint", "Academic Writing", "Excel"],
-      icon: <FaTasks className="text-amber-300" size={20} />
+      icon: <FaTasks className="text-blue-300" size={20} />
     },
     {
       title: "Duta Binusian (Student Ambassador)",
@@ -38,7 +38,7 @@ const ExperienceSection = () => {
         "Pioneered accessible learning methodologies for advanced programming and theoretical concepts"
       ],
       skills: ["Student Mentoring", "Academic Support", "Problem Solving", "Communication", "Leadership"],
-      icon: <FaCode className="text-orange-400" size={20} />
+      icon: <FaCode className="text-cyan-400" size={20} />
     },
     {
       title: "Teaching Assistant",
@@ -52,7 +52,7 @@ const ExperienceSection = () => {
         "Implemented personalized tutoring programs that increased course completion rates by 20%"
       ],
       skills: ["Teaching", "Laboratory Management", "Student Support", "Programming", "Curriculum Development"],
-      icon: <FaLightbulb className="text-rose-400" size={20} />
+      icon: <FaLightbulb className="text-blue-300" size={20} />
     },
     {
       title: "President of Himpunan Mahasiswa Teknik Informatika (HIMTI)",
@@ -67,7 +67,7 @@ const ExperienceSection = () => {
         "Secured strategic partnerships with leading tech companies, creating internship opportunities"
       ],
       skills: ["Leadership", "Event Management", "Public Speaking", "Team Building", "Strategic Planning"],
-      icon: <FaUsers className="text-yellow-400" size={20} />
+      icon: <FaUsers className="text-cyan-300" size={20} />
     },
     {
       title: "Freshmen Leader & Freshmen Partner FYP Binusian 28",
@@ -81,7 +81,7 @@ const ExperienceSection = () => {
         "Designed and executed orientation programs that increased student satisfaction by 100%"
       ],
       skills: ["Mentoring", "Orientation Planning", "Peer Support", "Communication", "Event Coordination"],
-      icon: <FaBriefcase className="text-red-400" size={20} />
+      icon: <FaBriefcase className="text-blue-400" size={20} />
     },
   ];
 
@@ -125,7 +125,7 @@ const ExperienceSection = () => {
                       </p>
                     </div>
                   </div>
-                  <span className="font-serif italic text-amber-400 text-sm whitespace-nowrap">
+                  <span className="font-serif italic text-blue-400 text-sm whitespace-nowrap">
                     {exp.period}
                   </span>
                 </div>
@@ -139,7 +139,7 @@ const ExperienceSection = () => {
                     {exp.description.length > 150 && (
                       <button
                         onClick={() => setExpandedCard(expandedCard === index ? null : index)}
-                        className="mt-2 text-orange-400 hover:text-orange-300 transition-colors flex items-center gap-1 text-sm"
+                        className="mt-2 text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1 text-sm"
                       >
                         {expandedCard === index ? 'Show Less' : 'Read More'}
                         {expandedCard === index ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
@@ -155,7 +155,7 @@ const ExperienceSection = () => {
                     <ul className="space-y-3">
                       {exp.achievements.map((achievement, idx) => (
                         <li key={idx} className="flex items-start gap-3">
-                          <span className="text-amber-400 mt-1.5">•</span>
+                          <span className="text-blue-400 mt-1.5">•</span>
                           <span className="text-stone-300 leading-relaxed">{achievement}</span>
                         </li>
                       ))}
@@ -168,7 +168,7 @@ const ExperienceSection = () => {
                       <span
                         key={idx}
                         className="px-3 py-1 border border-stone-700 text-stone-400 rounded-full text-xs
-                          hover:border-amber-500/50 hover:text-amber-300 transition-all duration-300"
+                          hover:border-blue-400/50 hover:text-blue-300 transition-all duration-300"
                       >
                         {skill}
                       </span>

@@ -49,7 +49,7 @@ const DownloadCVButton = ({
       className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-stone-800/70 text-stone-200 transition-colors"
       onClick={() => setOpen(false)}
     >
-      <span className="w-8 h-8 rounded-md bg-stone-900 flex items-center justify-center text-amber-300">
+      <span className="w-8 h-8 rounded-md bg-stone-900 flex items-center justify-center text-blue-300">
         <FaFileAlt size={16} />
       </span>
       <div className="flex flex-col">

@@ -6,17 +6,17 @@
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white
-           bg-gradient-to-r from-amber-500 to-orange-600 bg-[length:200%_100%] bg-left
-           shadow-lg shadow-amber-500/20
+           bg-gradient-to-r from-blue-500 to-cyan-500 bg-[length:200%_100%] bg-left
+           shadow-lg shadow-blue-500/20
            transition-all duration-300
-           hover:bg-right hover:shadow-xl hover:shadow-orange-600/30;
+           hover:bg-right hover:shadow-xl hover:shadow-cyan-500/30;
   }
 
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white
            border-2 border-stone-700 backdrop-blur-sm
            transition-all duration-300
-           hover:border-amber-500/60 hover:bg-stone-900/50;
+           hover:border-blue-400/60 hover:bg-stone-900/50;
   }
 }
 
@@ -52,10 +52,10 @@ body {
   height: 200vmax;
   opacity: 0.3;
   background: conic-gradient(from 0deg at 50% 50%,
-    rgba(245, 158, 11, 0.15) 0deg,
-    rgba(234, 88, 12, 0.15) 120deg,
-    rgba(225, 29, 72, 0.15) 240deg,
-    rgba(245, 158, 11, 0.15) 360deg
+    rgba(59, 130, 246, 0.15) 0deg,
+    rgba(6, 182, 212, 0.15) 120deg,
+    rgba(99, 102, 241, 0.15) 240deg,
+    rgba(59, 130, 246, 0.15) 360deg
   );
   animation: mesh-rotate 60s linear infinite;
 }
@@ -75,39 +75,39 @@ body {
 
 .bg-glow-a {
   background:
-    radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(234, 88, 12, 0.25) 0%, transparent 50%);
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.22) 0%, transparent 50%);
 }
 
 .bg-glow-b {
   background:
-    radial-gradient(circle at 80% 20%, rgba(225, 29, 72, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(217, 119, 6, 0.25) 0%, transparent 50%);
+    radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(14, 116, 144, 0.22) 0%, transparent 50%);
   animation-direction: reverse;
 }
 
 /* Mouse-follow spotlight glow, positioned via --spot-x/--spot-y custom properties */
 .cursor-glow {
-  background: radial-gradient(600px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(251, 191, 36, 0.15), transparent 40%);
+  background: radial-gradient(600px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgba(59, 130, 246, 0.15), transparent 40%);
 }
 
 /* Background patterns */
 .dot-pattern {
-  background-image: radial-gradient(circle, rgba(217, 119, 6, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
   background-size: 20px 20px;
 }
 
 .grid-pattern {
   background-image:
-    linear-gradient(rgba(217, 119, 6, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(217, 119, 6, 0.1) 1px, transparent 1px);
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
-/* Thin amber scrollbar for the horizontal project showcase */
+/* Thin blue scrollbar for the horizontal project showcase */
 .scrollbar-thin-amber {
   scrollbar-width: thin;
-  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
+  scrollbar-color: rgba(59, 130, 246, 0.4) transparent;
 }
 
 .scrollbar-thin-amber::-webkit-scrollbar {
@@ -119,7 +119,7 @@ body {
 }
 
 .scrollbar-thin-amber::-webkit-scrollbar-thumb {
-  background: rgba(245, 158, 11, 0.4);
+  background: rgba(59, 130, 246, 0.4);
   border-radius: 9999px;
 }
 
